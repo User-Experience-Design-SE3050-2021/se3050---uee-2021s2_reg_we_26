@@ -1,3 +1,4 @@
+import 'package:boc_smart_passbook/screens/billPayments/payment_screen.dart';
 import 'package:boc_smart_passbook/screens/fund_transfer/menu.dart';
 import 'package:flutter/material.dart';
 
@@ -69,7 +70,14 @@ class MyHomePage extends StatelessWidget {
                     primary: Colors.black45,
                     fixedSize: Size(150,50),
                   ),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PaymentScreen(),
+                        )
+                    );
+
+                  },
                   child: Text('Bill Payment'),
                 ),
                 SizedBox(height: 20.0),
