@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 
 class PaymentScreen extends StatelessWidget {
 
+  final String currentBill;
 
   final FocusNode _billFocusNode = FocusNode();
   final FocusNode _accountFocusNode = FocusNode();
   final FocusNode _amountFocusNode = FocusNode();
   final FocusNode _remarksFocusNode = FocusNode();
 
+  PaymentScreen({
+    required this.currentBill,
+  });
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -33,6 +37,7 @@ class PaymentScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 20.0),
             child: PaymentForm(
+              currentBill:  currentBill,
               billFocusNode : _billFocusNode,
               accountFocusNode : _accountFocusNode,
               amountFocusNode : _amountFocusNode,

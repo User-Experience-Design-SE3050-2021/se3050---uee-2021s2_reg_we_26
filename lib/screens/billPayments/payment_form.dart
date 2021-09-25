@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class PaymentForm extends StatefulWidget {
 
+  final String currentBill;
 
   final FocusNode billFocusNode;
   final FocusNode accountFocusNode;
@@ -13,6 +14,7 @@ class PaymentForm extends StatefulWidget {
   final FocusNode remarksFocusNode;
 
   const PaymentForm({
+    required this.currentBill,
     required this.billFocusNode,
     required this.accountFocusNode,
     required this.amountFocusNode,
@@ -52,41 +54,40 @@ class _PaymentFormState extends State<PaymentForm> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 24.0),
-                    Text(
+                    SizedBox(height: 35.0),
+                    const Text(
                       'Select Bill',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize : 22.0,
+                        color: Colors.black45,
+                        fontSize : 19.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(height: 8.0),
                     CustomFormForwardFieldBill(
-                      initialValue: "",
+                      initialValue: widget.currentBill,
                       isLabelEnabled: false,
                       controller: _billController,
                       focusNode: widget.billFocusNode,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.none,
                       inputAction: TextInputAction.next,
                       validator: (value) {
-                        // Validator.validateField(
-                        //   value: value,
-                        // );
-                        //
-                        // getTitle = value;
+                        if (value == null || value.isEmpty) {
+                          return 'Please Select a Bill';
+                        }
+                        getBill = value;
                       },
                       label:'Select Bill',
                       hint: 'Select a Bill',
 
                     ),
                     SizedBox(height: 24.0),
-                    Text(
+                    const Text(
                       'Select Account',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize : 22.0,
+                        color: Colors.black45,
+                        fontSize : 19.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold,
                       ),
@@ -100,21 +101,20 @@ class _PaymentFormState extends State<PaymentForm> {
                       keyboardType: TextInputType.text,
                       inputAction: TextInputAction.next,
                       validator: (value) {
-                        // Validator.validateField(
-                        //   value: value,
-                        // );
-                        //
-                        // getTitle = value;
+                        if (value == null || value.isEmpty) {
+                          return 'Please Select an Account';
+                        }
+                        getAccount = value;
                       },
                       label:'Select Account',
                       hint: 'Select Account',
                     ),
                     SizedBox(height: 24.0),
-                    Text(
+                    const Text(
                       'Amount',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize : 22.0,
+                        color: Colors.black45,
+                        fontSize : 19.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold,
                       ),
@@ -125,24 +125,23 @@ class _PaymentFormState extends State<PaymentForm> {
                       isLabelEnabled: false,
                       controller: _amountController,
                       focusNode: widget.amountFocusNode,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       inputAction: TextInputAction.next,
                       validator: (value) {
-                        // Validator.validateField(
-                        //   value: value,
-                        // );
-                        //
-                        // getTitle = value;
+                        if (value == null || value.isEmpty) {
+                          return 'Please Enter an Amount';
+                        }
+                        getAmount = value;
                       },
                       label:'Amount',
                       hint: 'LKR 0.00',
                     ),
                     SizedBox(height: 24.0),
-                    Text(
+                    const Text(
                       'Remarks',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize : 22.0,
+                        color: Colors.black45,
+                        fontSize : 19.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold,
                       ),
@@ -161,7 +160,7 @@ class _PaymentFormState extends State<PaymentForm> {
                         //   value: value,
                         // );
                         //
-                        // getTitle = value;
+                        getRemarks = value;
                       },
                       label:'Remarks',
                       hint: 'Remarks',
@@ -169,55 +168,61 @@ class _PaymentFormState extends State<PaymentForm> {
                   ],
                 ),
               ),
-              _isProcessing
-                  ? Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
-                ),
-              ) : Container(
-                  width: double.maxFinite,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.orangeAccent),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    _isProcessing
+                        ? const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
                       ),
-                    ),
-                    onPressed: () async {
-                      // widget.billNameFocusNode.unfocus();
-                      // widget.accountNumberFocusNode.unfocus();
-                      //
-                      // if(_addItemFormKey.currentState!.validate()){
-                      //   setState(() {
-                      //     _isProcessing = true;
-                      //   });
-                      //
-                      //   await Database.addItem(title: getTitle, description: getDescription);
-                      //
-                      //   setState(() {
-                      //     _isProcessing = false;
-                      //   });
-                      //
-                      //   Navigator.of(context).pop();
-                      // }
+                    ) : SizedBox(
+                      width: 140,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Color.fromRGBO(253,198,13,1)),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              )
+                          ),
+                        ),
+                        onPressed: () async{
+                          widget.billFocusNode.unfocus();
+                          widget.accountFocusNode.unfocus();
+                          widget.amountFocusNode.unfocus();
+                          widget.remarksFocusNode.unfocus();
 
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 16.0,bottom: 16.0),
-                      child: Text(
-                        'Pay',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blueGrey,
-                          letterSpacing: 2,
+                          if(_addItemFormKey.currentState!.validate()){
+                            setState(() {
+                              _isProcessing = true;
+                            });
+                            // await Database.addItem(title: getTitle, description: getDescription);
+                            setState(() {
+                              _isProcessing = false;
+                            });
+                            Navigator.of(context).pop();
+                          }
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.only(top: 16.0,bottom: 16.0),
+                          child: Text(
+                            'Pay',
+                            style: TextStyle(
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black45,
+                              letterSpacing: 2,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  )
+                    )
+                  ],
+                ),
               )
             ],
           )

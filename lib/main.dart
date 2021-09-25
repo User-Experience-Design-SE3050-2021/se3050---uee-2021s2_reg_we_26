@@ -73,7 +73,9 @@ class MyHomePage extends StatelessWidget {
                   onPressed: (){
                     Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => PaymentScreen(),
+                          builder: (context) => PaymentScreen(
+                              currentBill : ""
+                          ),
                         )
                     );
 
