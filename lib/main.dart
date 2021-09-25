@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
             elevation: 0,
             backgroundColor: const Color.fromRGBO(253,198,13,1),
             title: const Text(
-              'BOC_Smart_Passbook',
+              'BOC Smart Passbook',
               style: TextStyle(
                 color: Colors.black54,
               ),
