@@ -31,6 +31,7 @@ class _AddThirdPartyFormState extends State<AddThirdPartyForm> {
   final TextEditingController _amountFocusNode = TextEditingController();
   final TextEditingController _chekFocusNode = TextEditingController();
   final TextEditingController _descriptionFocusNode = TextEditingController();
+  bool isChecked = false;
 
   String getPay = "";
   String getAccountNo = "";
@@ -41,6 +42,18 @@ class _AddThirdPartyFormState extends State<AddThirdPartyForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.red;
+      }
+      return Colors.grey;
+    }
 
     return SingleChildScrollView(
       child: Form(
@@ -305,6 +318,34 @@ class _AddThirdPartyFormState extends State<AddThirdPartyForm> {
                       getDescription = value;
                     },
                   ),
+                  SizedBox(height: 24.0),
+                  Row(
+                    children: [
+                      Checkbox(
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.resolveWith(getColor),
+                        focusNode: widget.chekFocusNode,
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        },
+                      ),
+                      Expanded(
+                        child: Text(
+                          "I here by confirm that the above information is true and correct",
+                          style: TextStyle(
+                              color: Colors.black45,
+                              fontSize: 14.0,
+                              letterSpacing: 1,
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -335,7 +376,7 @@ class _AddThirdPartyFormState extends State<AddThirdPartyForm> {
                         widget.amountFocusNode.unfocus();
                         widget.chekFocusNode.unfocus();
                         widget.descriptionFocusNode.unfocus();
-                        if(_addThirdPartyFormKey.currentState!.validate()){
+                        if(_addThirdPartyFormKey.currentState!.validate() && isChecked == true){
                           setState(() {
                             _isProcessing = true;
                           });
