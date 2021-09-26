@@ -2,6 +2,7 @@ import 'package:boc_smart_passbook/custom_form_field.dart';
 import 'package:boc_smart_passbook/custom_form_forward_field.dart';
 import 'package:boc_smart_passbook/screens/billPayments/bills_screen.dart';
 import 'package:boc_smart_passbook/screens/billPayments/custom_form_field_forward_bill.dart';
+import 'package:boc_smart_passbook/validators/bill_payment_database.dart';
 import 'package:flutter/material.dart';
 
 class PaymentForm extends StatefulWidget {
@@ -200,7 +201,7 @@ class _PaymentFormState extends State<PaymentForm> {
                             setState(() {
                               _isProcessing = true;
                             });
-                            // await Database.addItem(title: getTitle, description: getDescription);
+                            await BillPaymentDatabase.payBill(amount: getAmount,description:getBill);
                             setState(() {
                               _isProcessing = false;
                             });

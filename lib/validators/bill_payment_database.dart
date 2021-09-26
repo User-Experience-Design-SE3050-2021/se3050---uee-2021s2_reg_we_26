@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final CollectionReference _mainCollection = _firestore.collection('bank');
@@ -55,15 +56,16 @@ class BillPaymentDatabase{
 
     required String amount,
     required String description,
-    required String date,
+
 
   })async{
-    DocumentReference documentReference = _mainCollection.doc("1").collection('').doc();
+    DocumentReference documentReference = _mainCollection.doc("1").collection('transaction').doc();
 
     Map<String, dynamic> data = <String , dynamic>{
       'amount' : amount,
+      'date': DateFormat.yMMMd().format(DateTime.now()),
       'description': description,
-      'date': date,
+
     };
 
     await documentReference.set(data).whenComplete(() => print('Note item inserted to the database')).catchError((e)=> print(e));

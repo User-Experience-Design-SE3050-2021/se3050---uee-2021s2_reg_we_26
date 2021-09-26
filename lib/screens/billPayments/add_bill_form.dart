@@ -3,6 +3,7 @@ import 'package:boc_smart_passbook/validators/bill_payment_database.dart';
 import 'package:boc_smart_passbook/validators/bill_payment_validator.dart';
 import 'package:flutter/material.dart';
 
+
 class AddBillForm extends StatefulWidget {
   //const AddBillForm({Key? key}) : super(key: key);
 
@@ -33,13 +34,14 @@ class _AddBillFormState extends State<AddBillForm> {
 
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
       child: Form(
           key: _addItemFormKey,
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 8.0,right: 8.0,bottom: 24.0),
+                padding: const EdgeInsets.only(left: 0.0,right: 8.0,bottom: 24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -141,7 +143,8 @@ class _AddBillFormState extends State<AddBillForm> {
                             setState(() {
                               _isProcessing = false;
                             });
-                            Navigator.of(context).pop();
+                           Navigator.of(context).pop();
+
                           }
                         },
                         child: const Padding(
