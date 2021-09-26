@@ -27,6 +27,7 @@ class AddBeneficiaryScreen extends StatelessWidget {
             'Add Beneficiary',
             style: TextStyle(
               color: Colors.black54,
+              fontWeight: FontWeight.w600
             ),
           ),
         ),

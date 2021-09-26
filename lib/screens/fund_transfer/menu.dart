@@ -26,6 +26,7 @@ class FundMenu extends StatelessWidget {
             'Fund Transfer',
             style: TextStyle(
               color: Colors.black54,
+              fontWeight: FontWeight.w600
             ),
         ),
       ),
@@ -72,7 +73,8 @@ class FundMenu extends StatelessWidget {
                                   'Beneficiaries',
                                   style: TextStyle(
                                       color: Colors.black45,
-                                      fontSize: 22
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600
                                   ),
                                 ),
                                 const SizedBox(width: 35.0,),
@@ -117,7 +119,8 @@ class FundMenu extends StatelessWidget {
                                         'Third Party Transfer',
                                         style: TextStyle(
                                             color: Colors.black45,
-                                            fontSize: 22
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600
                                         ),
                                         textAlign: TextAlign.center,
                                       )
@@ -147,7 +150,8 @@ class FundMenu extends StatelessWidget {
                                         'Own Account Transfer',
                                         style: TextStyle(
                                             color: Colors.black45,
-                                            fontSize: 22
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600
                                         ),
                                         textAlign: TextAlign.center,
                                       )

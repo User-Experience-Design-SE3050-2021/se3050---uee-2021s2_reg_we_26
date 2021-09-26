@@ -39,6 +39,7 @@ class BeneficiaryList extends StatelessWidget {
           'Beneficiaries',
           style: TextStyle(
             color: Colors.black54,
+            fontWeight: FontWeight.w600
           ),
         ),
       ),

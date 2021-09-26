@@ -28,6 +28,7 @@ class AddThirdPartyScreen extends StatelessWidget {
             'Third Party Transfers',
             style: TextStyle(
               color: Colors.black54,
+              fontWeight: FontWeight.w600
             ),
           ),
         ),

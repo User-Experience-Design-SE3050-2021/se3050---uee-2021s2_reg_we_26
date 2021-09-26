@@ -1,4 +1,5 @@
 import 'package:boc_smart_passbook/custom_form_field.dart';
+import 'package:boc_smart_passbook/screens/fund_transfer/transaction_confirmation.dart';
 import 'package:boc_smart_passbook/validator/fundtransfer_database.dart';
 import 'package:flutter/material.dart';
 
@@ -254,7 +255,7 @@ class _AddThirdPartyFormState extends State<AddThirdPartyForm> {
                       if(val == null || val.toString().isEmpty){
                         return 'This source can not be empty.';
                       }
-                      getAccountNo = val.toString();
+                      getSource = val.toString();
                     },
                     items: ownAccount.map((account) {
                       return DropdownMenuItem(
@@ -279,7 +280,7 @@ class _AddThirdPartyFormState extends State<AddThirdPartyForm> {
                     isLabelEnabled: false,
                     controller: _amountFocusNode,
                     focusNode: widget.amountFocusNode,
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.number,
                     inputAction: TextInputAction.done,
                     label:'Amount',
                     hint: 'Rs.0.00',
@@ -377,17 +378,26 @@ class _AddThirdPartyFormState extends State<AddThirdPartyForm> {
                         widget.chekFocusNode.unfocus();
                         widget.descriptionFocusNode.unfocus();
                         if(_addThirdPartyFormKey.currentState!.validate() && isChecked == true){
-                          setState(() {
-                            _isProcessing = true;
-                          });
-                          await FundTransferDatabase.addFundTransfer(
-                              description: getDescription,
-                              amount: getAmount
+                          // setState(() {
+                          //   _isProcessing = true;
+                          // });
+                          // await FundTransferDatabase.addFundTransfer(
+                          //     description: getDescription,
+                          //     amount: getAmount
+                          // );
+                          // setState(() {
+                          //   _isProcessing = false;
+                          // });
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => TransactionConfirmation(
+                                  pay: getPay,
+                                  source: getSource,
+                                  amount: getAmount,
+                                  description: getDescription
+                              ),
+                            ),
                           );
-                          setState(() {
-                            _isProcessing = false;
-                          });
-                          Navigator.of(context).pop();
                         }
                       },
                       child: const Padding(
