@@ -1,4 +1,6 @@
 import 'package:boc_smart_passbook/screens/fund_transfer/menu.dart';
+import 'package:boc_smart_passbook/screens/user_auth/login_screen.dart';
+import 'package:boc_smart_passbook/screens/user_auth/register_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,8 +16,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Montserrat'
       ),
-      home: MyHomePage(),
+      home: RegisterScreen(),
     );
   }
 }
