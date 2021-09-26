@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 class AddThirdPartyScreen extends StatelessWidget {
 
-  final FocusNode _payFocusNode = FocusNode();
   final FocusNode _accountNoFocusNode = FocusNode();
-  final FocusNode _sourceFocusNode = FocusNode();
   final FocusNode _amountFocusNode = FocusNode();
   final FocusNode _descriptionFocusNode = FocusNode();
   final FocusNode _chekFocusNode = FocusNode();
@@ -15,9 +13,7 @@ class AddThirdPartyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-        _payFocusNode.unfocus(),
         _accountNoFocusNode.unfocus(),
-        _sourceFocusNode.unfocus(),
         _amountFocusNode.unfocus(),
         _chekFocusNode.unfocus(),
         _descriptionFocusNode.unfocus(),
@@ -36,9 +32,7 @@ class AddThirdPartyScreen extends StatelessWidget {
           ),
         ),
         body: AddThirdPartyForm(
-            payFocusNode: _payFocusNode,
             accountNoFocusNode: _accountNoFocusNode,
-            sourceFocusNode: _sourceFocusNode,
             amountFocusNode: _amountFocusNode,
             chekFocusNode: _chekFocusNode,
             descriptionFocusNode: _descriptionFocusNode

@@ -1,5 +1,4 @@
 import 'package:boc_smart_passbook/screens/fund_transfer/add_beneficiary_form.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class AddBeneficiaryScreen extends StatelessWidget {

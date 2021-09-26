@@ -27,7 +27,8 @@ class BeneficiaryListView extends StatelessWidget {
               return Ink(
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(253, 221, 167, 1.0),
+                  // color: Color.fromRGBO(253, 221, 167, 1.0),
+                  color: const Color.fromRGBO(253, 241, 133, 1.0),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: ListTile(
