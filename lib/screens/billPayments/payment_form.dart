@@ -1,7 +1,7 @@
 import 'package:boc_smart_passbook/custom_form_field.dart';
-import 'package:boc_smart_passbook/custom_form_forward_field.dart';
 import 'package:boc_smart_passbook/screens/billPayments/bills_screen.dart';
 import 'package:boc_smart_passbook/screens/billPayments/custom_form_field_forward_bill.dart';
+import 'package:boc_smart_passbook/screens/billPayments/payment_confirm_preview_screen.dart';
 import 'package:boc_smart_passbook/validators/bill_payment_database.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +30,7 @@ class _PaymentFormState extends State<PaymentForm> {
 
   final _addItemFormKey = GlobalKey<FormState>();
 
+  final List<String> ownAccount = ['Account 1 - 423434564','Account 2 - 2354545'];
   bool _isProcessing = false;
 
   final TextEditingController _billController = TextEditingController();
@@ -94,21 +95,77 @@ class _PaymentFormState extends State<PaymentForm> {
                       ),
                     ),
                     SizedBox(height: 8.0),
-                    CustomFormField(
-                      initialValue: "",
-                      isLabelEnabled: false,
-                      controller: _accountController,
-                      focusNode: widget.accountFocusNode,
-                      keyboardType: TextInputType.text,
-                      inputAction: TextInputAction.next,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please Select an Account';
-                        }
-                        getAccount = value;
+                    // CustomFormField(
+                    //   initialValue: "",
+                    //   isLabelEnabled: false,
+                    //   controller: _accountController,
+                    //   focusNode: widget.accountFocusNode,
+                    //   keyboardType: TextInputType.text,
+                    //   inputAction: TextInputAction.next,
+                    //   validator: (value) {
+                    //     if (value == null || value.isEmpty) {
+                    //       return 'Please Select an Account';
+                    //     }
+                    //     getAccount = value;
+                    //   },
+                    //   label:'Select Account',
+                    //   hint: 'Select Account',
+                    // ),
+                    DropdownButtonFormField(
+                      decoration: InputDecoration(
+                        labelStyle: TextStyle(color: Colors.yellowAccent),
+                        hintStyle: const TextStyle(
+                            color: Colors.grey
+                        ),
+                        errorStyle: const TextStyle(
+                          color: Colors.redAccent,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: const BorderSide(
+                              color: Colors.amberAccent,
+                              width: 2,
+                            )
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: const BorderSide(
+                              color: Colors.grey,
+                            )
+                        ),
+                        errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: const BorderSide(
+                              color: Colors.redAccent,
+                              width: 2,
+                            )
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.redAccent,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      onChanged: (val) {
+                        setState(() => getAccount = val.toString());
                       },
-                      label:'Select Account',
-                      hint: 'Select Account',
+                      hint: Text('Select Account'),
+                     // value: getAccount.isEmpty ? 'Isira - 423434564' : getAccount,
+                      validator: (val) {
+                        if(val == null || val.toString().isEmpty){
+                          return 'Please select an account';
+                        }
+                       // getAccountNo = val.toString();
+                      },
+                      items: ownAccount.map((account) {
+                        return DropdownMenuItem(
+                          child: Text(account),
+                          value: account,
+                        );
+                      }).toList(),
                     ),
                     SizedBox(height: 24.0),
                     const Text(
@@ -201,11 +258,16 @@ class _PaymentFormState extends State<PaymentForm> {
                             setState(() {
                               _isProcessing = true;
                             });
-                            await BillPaymentDatabase.payBill(amount: getAmount,description:getBill);
+                              await BillPaymentDatabase.payBill(amount: getAmount,description:getBill);
                             setState(() {
                               _isProcessing = false;
                             });
-                            Navigator.of(context).pop();
+                          //Navigator.of(context).pop();
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => PaymentConfirmScreen(),
+                              ),
+                            );
                           }
                         },
                         child: const Padding(

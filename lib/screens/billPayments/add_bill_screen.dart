@@ -22,6 +22,9 @@ class AddBillScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: Colors.black54,
+          ),
           backgroundColor: const Color.fromRGBO(253,198,13,1),
           title:const Text(
             'Add Bill',
