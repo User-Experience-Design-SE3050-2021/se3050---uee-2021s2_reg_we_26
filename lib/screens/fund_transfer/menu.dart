@@ -1,3 +1,4 @@
+import 'package:boc_smart_passbook/screens/fund_transfer/add_o_fund_screen.dart';
 import 'package:boc_smart_passbook/screens/fund_transfer/add_t_fund_screen.dart';
 import 'package:boc_smart_passbook/screens/fund_transfer/beneficiary_list.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -142,7 +143,7 @@ class FundMenu extends StatelessWidget {
                                       onPressed: (){
                                         Navigator.of(context).push(
                                           MaterialPageRoute(
-                                            builder: (context) => const FundMenu(),
+                                            builder: (context) => AddOwnAccountScreen(),
                                           ),
                                         );
                                       },

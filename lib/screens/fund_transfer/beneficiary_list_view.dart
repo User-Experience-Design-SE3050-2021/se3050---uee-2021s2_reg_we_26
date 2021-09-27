@@ -23,6 +23,7 @@ class BeneficiaryListView extends StatelessWidget {
               String name = bankInfo['name'];
               String description = bankInfo['description'];
               String accountNo = bankInfo['accountNo'];
+              String bank = bankInfo['bank'];
 
               return Ink(
                 height: 100,
@@ -55,10 +56,20 @@ class BeneficiaryListView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  subtitle: Text(
-                    "Account No  :  $accountNo",
-                    maxLines: 1,
-                    overflow:  TextOverflow.ellipsis,
+                  subtitle: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Account No  :  $accountNo",
+                        maxLines: 1,
+                        overflow:  TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        "$bank Bank",
+                        maxLines: 1,
+                        overflow:  TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
                 ),
               );

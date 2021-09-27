@@ -1,6 +1,5 @@
 import 'package:boc_smart_passbook/custom_form_field.dart';
 import 'package:boc_smart_passbook/validator/fundtransfer_database.dart';
-import 'package:boc_smart_passbook/validator/fundtransfer_validator.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
@@ -28,8 +27,9 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
   final TextEditingController _accountNoController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-
+  final List<String> banks = ['BOC','NSB','HNB','COM','HSBC','NDB'];
   String getName = "";
+  String getBank = "";
   String getAccountNo = "";
   String getEmail = "";
   String getDescription = "";
@@ -40,6 +40,7 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
       child: Form(
         key: _addBeneficiaryFormKey,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 16.0,right: 16.0,bottom: 24.0),
@@ -72,6 +73,72 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
                       }
                       getName = value;
                     },
+                  ),
+                  SizedBox(height: 24.0),
+                  const Text(
+                    "Bank",
+                    style: TextStyle(
+                        color: Colors.black45,
+                        fontSize: 19.0,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  DropdownButtonFormField(
+                    decoration: InputDecoration(
+                      labelStyle: TextStyle(color: Colors.yellowAccent),
+                      hintStyle: const TextStyle(
+                          color: Colors.grey
+                      ),
+                      errorStyle: const TextStyle(
+                        color: Colors.redAccent,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.amberAccent,
+                            width: 2,
+                          )
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.grey,
+                          )
+                      ),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: const BorderSide(
+                            color: Colors.redAccent,
+                            width: 2,
+                          )
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: const BorderSide(
+                          color: Colors.redAccent,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    onChanged: (val) {
+                      setState(() => getBank = val.toString());
+                    },
+                    value: getBank.isEmpty ? 'HNB' : getBank,
+                    validator: (val) {
+                      if(val == null || val.toString().isEmpty){
+                        return 'This source can not be empty.';
+                      }
+                      getBank = val.toString();
+                    },
+                    items: banks.map((account) {
+                      return DropdownMenuItem(
+                        child: Text(account),
+                        value: account,
+                      );
+                    }).toList(),
                   ),
                   SizedBox(height: 24.0),
                   const Text(
@@ -164,34 +231,33 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: SizedBox(
-                        width: 140,
-                        child: Padding(
-                          padding: const EdgeInsets.only(),
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(Colors.black12),
-                              shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )
-                              ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      width: 140,
+                      child: Padding(
+                        padding: const EdgeInsets.only(),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Colors.black12),
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )
                             ),
-                            onPressed: () {},
-                            child: const Padding(
-                              padding: EdgeInsets.only(top: 16.0,bottom: 16.0),
-                              child: Text(
-                                'Cancel',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white70,
-                                  letterSpacing: 2,
-                                ),
+                          ),
+                          onPressed: () {},
+                          child: const Padding(
+                            padding: EdgeInsets.only(top: 16.0,bottom: 16.0),
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white70,
+                                letterSpacing: 2,
                               ),
                             ),
                           ),
@@ -206,48 +272,46 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
                     ),
                   ) :
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: SizedBox(
-                        width: 140,
-                        child: Padding(
-                          padding: const EdgeInsets.only(),
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(Color.fromRGBO(253,198,13,1)),
-                              shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )
-                              ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: SizedBox(
+                      width: 140,
+                      child: Padding(
+                        padding: const EdgeInsets.only(),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Color.fromRGBO(253,198,13,1)),
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )
                             ),
-                            onPressed: () async{
-                              widget.nameFocusNode.unfocus();
-                              widget.accountNoFocusNode.unfocus();
-                              widget.emailFocusNode.unfocus();
-                              widget.descriptionFocusNode.unfocus();
-                              if(_addBeneficiaryFormKey.currentState!.validate()){
-                                setState(() {
-                                  _isProcessing = true;
-                                });
-                                await FundTransferDatabase.addBeneficiary(name: getName,accountNo: getAccountNo,email: getEmail, description: getDescription);
-                                setState(() {
-                                  _isProcessing = false;
-                                });
-                                Navigator.of(context).pop();
-                              }
-                            },
-                            child: const Padding(
-                              padding: EdgeInsets.only(top: 16.0,bottom: 16.0),
-                              child: Text(
-                                'Save',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black45,
-                                  letterSpacing: 2,
-                                ),
+                          ),
+                          onPressed: () async{
+                            widget.nameFocusNode.unfocus();
+                            widget.accountNoFocusNode.unfocus();
+                            widget.emailFocusNode.unfocus();
+                            widget.descriptionFocusNode.unfocus();
+                            if(_addBeneficiaryFormKey.currentState!.validate()){
+                              setState(() {
+                                _isProcessing = true;
+                              });
+                              await FundTransferDatabase.addBeneficiary(name: getName,bank: getBank,accountNo: getAccountNo,email: getEmail, description: getDescription);
+                              setState(() {
+                                _isProcessing = false;
+                              });
+                              Navigator.of(context).pop();
+                            }
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.only(top: 16.0,bottom: 16.0),
+                            child: Text(
+                              'Save',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black45,
+                                letterSpacing: 2,
                               ),
                             ),
                           ),

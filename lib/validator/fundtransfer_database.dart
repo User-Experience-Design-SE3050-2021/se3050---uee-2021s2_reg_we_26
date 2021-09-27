@@ -10,6 +10,7 @@ class FundTransferDatabase {
 
   static Future<void> addBeneficiary({
     required String name,
+    required String bank,
     required String accountNo,
     required String email,
     required String description,
@@ -18,6 +19,7 @@ class FundTransferDatabase {
 
     Map<String,dynamic> data = <String, dynamic>{
       "name" : name,
+      "bank" : bank,
       "accountNo" : accountNo,
       "email" : email,
       "description" : description,
