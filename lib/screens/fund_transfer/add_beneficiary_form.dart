@@ -68,7 +68,7 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
                     label:'Name',
                     hint: 'Write the beneficiary name',
                     validator: (value) {
-                      if(value == null || value.isEmpty){
+                      if(value.isEmpty){
                         return 'This name cannot be empty.';
                       }
                       getName = value;
@@ -161,7 +161,7 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
                     label:'AccountNo',
                     hint: 'Write the account no',
                     validator: (value) {
-                      if(value == null || value.isEmpty){
+                      if(value.isEmpty){
                         return 'This account no cannot be empty.';
                       }
                       getAccountNo = value;
@@ -188,7 +188,7 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
                     label:'Email',
                     hint: 'Write the beneficiary email',
                     validator: (value) {
-                      if(value == null || value.isEmpty){
+                      if(value.isEmpty){
                         return 'This email cannot be empty.';
                       }
                       if(!EmailValidator.validate(value)){
@@ -219,7 +219,7 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
                     label:'Description',
                     hint: 'Write a description',
                     validator: (value) {
-                      if(value == null || value.isEmpty){
+                      if(value.isEmpty){
                         return 'This description cannot be empty.';
                       }
                       getDescription = value;

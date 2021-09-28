@@ -43,32 +43,40 @@ class BeneficiaryList extends StatelessWidget {
           ),
         ),
       ),
-      body : FutureBuilder(
-          future: _initializeFirebase(),
-          builder: (context,snapshot){
-            if(snapshot.hasError){
-              return Text('Error Initializing Firebase');
-            }else if(snapshot.connectionState == ConnectionState.done){
-              return SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 16.0,right: 16.0,bottom: 20.0,top: 20.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    color: Color.fromRGBO(229, 229, 229, 1.0),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 16.0,right: 16.0,bottom: 20.0),
-                      child: BeneficiaryListView(),
+      body : Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/theme1.png"),
+              fit: BoxFit.cover,
+            )
+        ),
+        child: FutureBuilder(
+            future: _initializeFirebase(),
+            builder: (context,snapshot){
+              if(snapshot.hasError){
+                return Text('Error Initializing Firebase');
+              }else if(snapshot.connectionState == ConnectionState.done){
+                return SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16.0,right: 16.0,bottom: 20.0,top: 20.0),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      color: Color.fromRGBO(229, 229, 229, 0.7),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0,right: 16.0,bottom: 20.0),
+                        child: BeneficiaryListView(),
+                      ),
                     ),
                   ),
-                ),
+                );
+              }
+              return CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
               );
-            }
-            return CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
-            );
-          })
+            }),
+      )
     );
   }
 }

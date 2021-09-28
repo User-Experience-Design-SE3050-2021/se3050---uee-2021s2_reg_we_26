@@ -285,7 +285,7 @@ class _AddThirdPartyFormState extends State<AddThirdPartyForm> {
                     label:'Amount',
                     hint: 'Rs.0.00',
                     validator: (value) {
-                      if(value == null || value.isEmpty){
+                      if(value.isEmpty){
                         return 'This amount can not be empty.';
                       }
                       getAmount = value;
@@ -313,7 +313,7 @@ class _AddThirdPartyFormState extends State<AddThirdPartyForm> {
                     label:'Remark',
                     hint: 'Write the remark',
                     validator: (value) {
-                      if(value == null || value.isEmpty){
+                      if(value.isEmpty){
                         return 'This remark can not be empty.';
                       }
                       getDescription = value;

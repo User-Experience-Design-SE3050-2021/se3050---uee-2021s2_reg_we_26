@@ -31,11 +31,29 @@ class AddBeneficiaryScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: AddBeneficiaryForm(
-            nameFocusNode: _nameFocusNode,
-            accountNoFocusNode: _accountNoFocusNode,
-            emailFocusNode: _emailFocusNode,
-            descriptionFocusNode: _descriptionFocusNode,
+        body: SafeArea(
+          child: Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/theme2.png"),
+                  fit: BoxFit.cover,
+                )
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: AddBeneficiaryForm(
+                      nameFocusNode: _nameFocusNode,
+                      accountNoFocusNode: _accountNoFocusNode,
+                      emailFocusNode: _emailFocusNode,
+                      descriptionFocusNode: _descriptionFocusNode,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

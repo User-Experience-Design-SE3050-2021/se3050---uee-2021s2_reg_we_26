@@ -32,11 +32,29 @@ class AddThirdPartyScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: AddThirdPartyForm(
-            accountNoFocusNode: _accountNoFocusNode,
-            amountFocusNode: _amountFocusNode,
-            chekFocusNode: _chekFocusNode,
-            descriptionFocusNode: _descriptionFocusNode
+        body: SafeArea(
+          child: Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/theme2.png"),
+                  fit: BoxFit.cover,
+                )
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: AddThirdPartyForm(
+                      accountNoFocusNode: _accountNoFocusNode,
+                      amountFocusNode: _amountFocusNode,
+                      chekFocusNode: _chekFocusNode,
+                      descriptionFocusNode: _descriptionFocusNode
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
