@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'add_loan_screen.dart';
@@ -68,8 +69,9 @@ class LoanMenu extends StatelessWidget {
                             "interest. We provide the best services for you.",
                         maxLines: 5,
                         overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.justify,
                         style: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                         ),
                       ),
                     ),
