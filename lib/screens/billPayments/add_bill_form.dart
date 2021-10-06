@@ -45,8 +45,8 @@ class _AddBillFormState extends State<AddBillForm> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 35.0),
-                    Text(
+                    const SizedBox(height: 35.0),
+                    const Text(
                       'Bill Name',
                       style: TextStyle(
                         color: Colors.black,
@@ -55,7 +55,7 @@ class _AddBillFormState extends State<AddBillForm> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8.0),
+                    const SizedBox(height: 8.0),
                     CustomFormField(
                       initialValue: "",
                       isLabelEnabled: false,
@@ -76,8 +76,8 @@ class _AddBillFormState extends State<AddBillForm> {
                       label:'Bill Name',
                       hint: 'Enter Bill Name',
                     ),
-                    SizedBox(height: 24.0),
-                    Text(
+                    const SizedBox(height: 24.0),
+                    const Text(
                       'Account Number',
                       style: TextStyle(
                         color: Colors.black,

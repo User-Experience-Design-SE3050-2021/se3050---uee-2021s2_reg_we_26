@@ -9,6 +9,7 @@ class PaymentScreen extends StatelessWidget {
   final FocusNode _accountFocusNode = FocusNode();
   final FocusNode _amountFocusNode = FocusNode();
   final FocusNode _remarksFocusNode = FocusNode();
+  final FocusNode _checkFocusNode = FocusNode();
 
   PaymentScreen({
     required this.currentBill,
@@ -45,6 +46,7 @@ class PaymentScreen extends StatelessWidget {
               accountFocusNode : _accountFocusNode,
               amountFocusNode : _amountFocusNode,
               remarksFocusNode : _remarksFocusNode,
+              chekFocusNode : _checkFocusNode,
             ),
           ),
         ),

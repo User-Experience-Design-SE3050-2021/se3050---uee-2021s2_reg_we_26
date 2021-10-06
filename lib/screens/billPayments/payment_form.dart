@@ -13,6 +13,7 @@ class PaymentForm extends StatefulWidget {
   final FocusNode accountFocusNode;
   final FocusNode amountFocusNode;
   final FocusNode remarksFocusNode;
+  final FocusNode chekFocusNode;
 
   const PaymentForm({
     required this.currentBill,
@@ -20,6 +21,7 @@ class PaymentForm extends StatefulWidget {
     required this.accountFocusNode,
     required this.amountFocusNode,
     required this.remarksFocusNode,
+    required this.chekFocusNode,
   });
 
   @override
@@ -38,6 +40,9 @@ class _PaymentFormState extends State<PaymentForm> {
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _remarksController = TextEditingController();
 
+  bool isChecked = false;
+
+
   String getBill = '';
   String getAccount = '';
   String getAmount = '';
@@ -46,6 +51,18 @@ class _PaymentFormState extends State<PaymentForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.red;
+      }
+      return Colors.grey;
+    }
     return SingleChildScrollView(
       child: Form(
           key: _addItemFormKey,
@@ -56,7 +73,7 @@ class _PaymentFormState extends State<PaymentForm> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 35.0),
+                    const SizedBox(height: 35.0),
                     const Text(
                       'Select Bill',
                       style: TextStyle(
@@ -66,7 +83,7 @@ class _PaymentFormState extends State<PaymentForm> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8.0),
+                    const SizedBox(height: 8.0),
                     CustomFormForwardFieldBill(
                       initialValue: widget.currentBill,
                       isLabelEnabled: false,
@@ -84,7 +101,7 @@ class _PaymentFormState extends State<PaymentForm> {
                       hint: 'Select a Bill',
 
                     ),
-                    SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                     const Text(
                       'Select Account',
                       style: TextStyle(
@@ -94,7 +111,7 @@ class _PaymentFormState extends State<PaymentForm> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8.0),
+                    const SizedBox(height: 8.0),
                     // CustomFormField(
                     //   initialValue: "",
                     //   isLabelEnabled: false,
@@ -113,7 +130,7 @@ class _PaymentFormState extends State<PaymentForm> {
                     // ),
                     DropdownButtonFormField(
                       decoration: InputDecoration(
-                        labelStyle: TextStyle(color: Colors.yellowAccent),
+                        labelStyle: const TextStyle(color: Colors.yellowAccent),
                         hintStyle: const TextStyle(
                             color: Colors.grey
                         ),
@@ -152,7 +169,7 @@ class _PaymentFormState extends State<PaymentForm> {
                       onChanged: (val) {
                         setState(() => getAccount = val.toString());
                       },
-                      hint: Text('Select Account'),
+                      hint: const Text('Select Account'),
                      // value: getAccount.isEmpty ? 'Isira - 423434564' : getAccount,
                       validator: (val) {
                         if(val == null || val.toString().isEmpty){
@@ -167,7 +184,7 @@ class _PaymentFormState extends State<PaymentForm> {
                         );
                       }).toList(),
                     ),
-                    SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                     const Text(
                       'Amount',
                       style: TextStyle(
@@ -177,7 +194,7 @@ class _PaymentFormState extends State<PaymentForm> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8.0),
+                    const SizedBox(height: 8.0),
                     CustomFormField(
                       initialValue: "",
                       isLabelEnabled: false,
@@ -194,7 +211,7 @@ class _PaymentFormState extends State<PaymentForm> {
                       label:'Amount',
                       hint: 'LKR 0.00',
                     ),
-                    SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                     const Text(
                       'Remarks',
                       style: TextStyle(
@@ -204,7 +221,7 @@ class _PaymentFormState extends State<PaymentForm> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8.0),
+                    const SizedBox(height: 8.0),
                     CustomFormField(
                       initialValue: "",
                       maxLines: 2,
@@ -222,6 +239,34 @@ class _PaymentFormState extends State<PaymentForm> {
                       },
                       label:'Remarks',
                       hint: 'Remarks',
+                    ),
+                    const SizedBox(height: 24.0),
+                    Row(
+                      children: [
+                        Checkbox(
+                          checkColor: Colors.white,
+                          fillColor: MaterialStateProperty.resolveWith(getColor),
+                          focusNode: widget.chekFocusNode,
+                          value: isChecked,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              isChecked = value!;
+                            });
+                          },
+                        ),
+                        const Expanded(
+                          child: Text(
+                            "I here by confirm that the above information is true and correct",
+                            style: TextStyle(
+                                color: Colors.black45,
+                                fontSize: 14.0,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ),
+
+                      ],
                     ),
                   ],
                 ),
@@ -241,7 +286,7 @@ class _PaymentFormState extends State<PaymentForm> {
                       width: 140,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Color.fromRGBO(253,198,13,1)),
+                          backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(253,198,13,1)),
                           shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -253,19 +298,24 @@ class _PaymentFormState extends State<PaymentForm> {
                           widget.accountFocusNode.unfocus();
                           widget.amountFocusNode.unfocus();
                           widget.remarksFocusNode.unfocus();
+                          widget.chekFocusNode.unfocus();
 
-                          if(_addItemFormKey.currentState!.validate()){
+                          if(_addItemFormKey.currentState!.validate() && isChecked == true){
                             setState(() {
                               _isProcessing = true;
                             });
-                              await BillPaymentDatabase.payBill(amount: getAmount,description:getBill);
+                           //   await BillPaymentDatabase.payBill(amount: getAmount,description:getBill);
                             setState(() {
                               _isProcessing = false;
                             });
                           //Navigator.of(context).pop();
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => PaymentConfirmScreen(),
+                                builder: (context) => PaymentConfirmScreen(
+                                    bill : getBill,
+                                    amount: getAmount,
+                                    remarks: getRemarks,
+                                ),
                               ),
                             );
                           }
