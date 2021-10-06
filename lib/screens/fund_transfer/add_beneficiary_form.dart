@@ -36,6 +36,38 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            title: const Text('Beneficiary Added Successfully.',style: TextStyle(fontWeight: FontWeight.w600),),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text('You have successfully added ' + getName + ' as a beneficiary. '),
+                  SizedBox(height: 20,),
+                  const Text('Would you like to continue?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Continue'),
+                onPressed: () {
+                  int count = 0;
+                  Navigator.of(context).popUntil((_) => count++ >= 2);
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return SingleChildScrollView(
       child: Form(
         key: _addBeneficiaryFormKey,
@@ -248,7 +280,9 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
                                 )
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
                           child: const Padding(
                             padding: EdgeInsets.only(top: 16.0,bottom: 16.0),
                             child: Text(
@@ -300,7 +334,7 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
                               setState(() {
                                 _isProcessing = false;
                               });
-                              Navigator.of(context).pop();
+                              _showMyDialog();
                             }
                           },
                           child: const Padding(

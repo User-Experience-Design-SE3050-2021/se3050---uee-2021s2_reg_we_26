@@ -378,16 +378,6 @@ class _AddThirdPartyFormState extends State<AddThirdPartyForm> {
                         widget.chekFocusNode.unfocus();
                         widget.descriptionFocusNode.unfocus();
                         if(_addThirdPartyFormKey.currentState!.validate() && isChecked == true){
-                          // setState(() {
-                          //   _isProcessing = true;
-                          // });
-                          // await FundTransferDatabase.addFundTransfer(
-                          //     description: getDescription,
-                          //     amount: getAmount
-                          // );
-                          // setState(() {
-                          //   _isProcessing = false;
-                          // });
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => TransactionConfirmation(

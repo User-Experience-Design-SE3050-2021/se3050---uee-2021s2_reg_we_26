@@ -24,6 +24,42 @@ class TransactionConfirmation extends StatefulWidget {
 class _TransactionConfirmationState extends State<TransactionConfirmation> {
   @override
   Widget build(BuildContext context) {
+
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            title: const Text('Transaction Completed.',style: TextStyle(fontWeight: FontWeight.w600),),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text('You have successfully transfer Rs. ' + widget.amount + ' to the ' + widget.pay),
+                  SizedBox(height: 20,),
+                  const Text('Would you like to continue?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Continue'),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const FundMenu(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+
     bool _isProcessing = false;
     return Scaffold(
       appBar: AppBar(
@@ -286,12 +322,7 @@ class _TransactionConfirmationState extends State<TransactionConfirmation> {
                               setState(() {
                                 _isProcessing = false;
                               });
-
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const FundMenu(),
-                                ),
-                              );
+                              _showMyDialog();
                             },
                             child: const Text(
                               'Save',
