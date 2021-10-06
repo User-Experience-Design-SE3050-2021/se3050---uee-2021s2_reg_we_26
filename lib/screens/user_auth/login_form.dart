@@ -33,10 +33,10 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 2.0, top: 20.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 20.0, top: 10.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
                   Text(
                     'Sign In',
                     style: TextStyle(
@@ -44,54 +44,50 @@ class _LoginFormState extends State<LoginForm> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 2.0, top: 20.0),
-                    child: CustomAuthFormField(
-                      isObscure: false,
-                      initialValue: "",
-                      controller: _nicController,
-                      focusNode: widget.nicFocusNode,
-                      keyboardType: TextInputType.text,
-                      inputAction: TextInputAction.done,
-                      label: 'Enter User NIC',
-                      hint: 'Enter your NIC number',
-                      validator: (value) {
-                        Validator.validateField(
-                            value: value
-                        );
-                        getUserName = value;
-                      },
-                    ),
+                  SizedBox(height: 15),
+                  CustomAuthFormField(
+                    isObscure: false,
+                    initialValue: "",
+                    controller: _nicController,
+                    focusNode: widget.nicFocusNode,
+                    keyboardType: TextInputType.text,
+                    inputAction: TextInputAction.next,
+                    label: 'Enter User NIC',
+                    hint: 'Enter your NIC number',
+                    validator: (value) {
+                      Validator.validateField(
+                          value: value
+                      );
+                      getUserName = value;
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 20.0, top: 20.0),
-                    child: CustomAuthFormField(
-                      isObscure: true,
-                      initialValue: "",
-                      controller: _pwdController,
-                      focusNode: widget.pwdFocusNode,
-                      keyboardType: TextInputType.text,
-                      inputAction: TextInputAction.next,
-                      label: 'Password',
-                      hint: 'Enter your Password',
-                      validator: (value) {
-                        Validator.validateField(
-                            value: value
-                        );
-                        getPwd = value;
-                      },
-                    ),
+                  SizedBox(height: 10),
+                  CustomAuthFormField(
+                    isObscure: true,
+                    initialValue: "",
+                    controller: _pwdController,
+                    focusNode: widget.pwdFocusNode,
+                    keyboardType: TextInputType.text,
+                    inputAction: TextInputAction.next,
+                    label: 'Password',
+                    hint: 'Enter your Password',
+                    validator: (value) {
+                      Validator.validateField(
+                          value: value
+                      );
+                      getPwd = value;
+                    },
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 0.0, right: 0.0),
+              padding: EdgeInsets.only(left: 8.0 , right: 8.0, bottom: 8.0),
               child: Container(
                   width: double.maxFinite,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Color.fromRGBO(251, 215, 78, 100.0)),
+                      backgroundColor: MaterialStateProperty.all(Color.fromRGBO(251, 215, 78, 1)),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -100,7 +96,7 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                     onPressed: (){},
                     child: Padding(
-                      padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                      padding: EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
                       child: Text(
                         'Sign In',
                         style: TextStyle(

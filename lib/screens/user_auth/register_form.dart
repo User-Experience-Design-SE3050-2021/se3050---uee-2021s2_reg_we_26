@@ -22,12 +22,13 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
+  final _LoginInFormKey = GlobalKey<FormState>();
+
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _nicController = TextEditingController();
   final TextEditingController _contactController = TextEditingController();
   final TextEditingController _pwdController = TextEditingController();
 
-  final _LoginInFormKey = GlobalKey<FormState>();
 
   String getUserName = "";
   String getNIC = "";
@@ -44,8 +45,8 @@ class _RegisterFormState extends State<RegisterForm> {
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 2.0, top: 20.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 5),
                   Text(
                     'Sign Up',
                     style: TextStyle(
@@ -53,111 +54,100 @@ class _RegisterFormState extends State<RegisterForm> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 2.0, top: 5.0),
-                    child: CustomAuthFormField(
-                      isObscure: false,
-                      initialValue: "",
-                      controller: _usernameController,
-                      focusNode: widget.usernameFocusNode,
-                      keyboardType: TextInputType.text,
-                      inputAction: TextInputAction.done,
-                      label: 'Username',
-                      hint: 'Enter your name',
-                      validator: (value) {
-                        Validator.validateField(
-                            value: value
-                        );
-                        getUserName = value;
-                      },
-                    ),
+                  SizedBox(height: 5),
+                  CustomAuthFormField(
+                    initialValue: "",
+                    controller: _usernameController,
+                    focusNode: widget.usernameFocusNode,
+                    keyboardType: TextInputType.text,
+                    inputAction: TextInputAction.next,
+                    validator: (value) {
+                      Validator.validateField(
+                          value: value
+                      );
+                      getUserName = value;
+                    },
+                    label: 'Username',
+                    hint: 'Enter your name',
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 2.0, top: 5.0),
-                    child: CustomAuthFormField(
-                      isObscure: false,
-                      initialValue: "",
-                      controller: _nicController,
-                      focusNode: widget.nicFocusNode,
-                      keyboardType: TextInputType.text,
-                      inputAction: TextInputAction.next,
-                      label: 'NIC Number',
-                      hint: 'Enter your NIC number',
-                      validator: (value) {
-                        Validator.validateField(
-                            value: value
-                        );
-                        getNIC = value;
-                      },
-                    ),
+                  SizedBox(height: 15),
+                  CustomAuthFormField(
+                    isObscure: false,
+                    initialValue: "",
+                    controller: _nicController,
+                    focusNode: widget.nicFocusNode,
+                    keyboardType: TextInputType.text,
+                    inputAction: TextInputAction.next,
+                    label: 'NIC Number',
+                    hint: 'Enter your NIC number',
+                    validator: (value) {
+                      Validator.validateField(
+                          value: value
+                      );
+                      getNIC = value;
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 2.0, top: 5.0),
-                    child: CustomAuthFormField(
-                      isObscure: false,
-                      initialValue: "",
-                      controller: _contactController,
-                      focusNode: widget.contactFocusNode,
-                      keyboardType: TextInputType.text,
-                      inputAction: TextInputAction.next,
-                      label: 'Contact Number',
-                      hint: 'Enter your Contact Number',
-                      validator: (value) {
-                        Validator.validateField(
-                            value: value
-                        );
-                        getContact = value;
-                      },
-                    ),
+                  SizedBox(height: 15),
+                  CustomAuthFormField(
+                    isObscure: false,
+                    initialValue: "",
+                    controller: _contactController,
+                    focusNode: widget.contactFocusNode,
+                    keyboardType: TextInputType.phone,
+                    inputAction: TextInputAction.next,
+                    validator: (value) {
+                      Validator.validateField(
+                          value: value
+                      );
+                      getContact = value;
+                    },
+                    label: 'Contact Number',
+                    hint: 'Enter your Contact Number',
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 2.0, top: 5.0),
-                    child: CustomAuthFormField(
-                      isObscure: true,
-                      initialValue: "",
-                      controller: _pwdController,
-                      focusNode: widget.pwdFocusNode,
-                      keyboardType: TextInputType.text,
-                      inputAction: TextInputAction.next,
-                      label: 'Password',
-                      hint: 'Enter your new Password',
-                      validator: (value) {
-                        Validator.validateField(
-                            value: value
-                        );
-                        getPwd = value;
-                      },
-                    ),
+                  SizedBox(height: 15),
+                  CustomAuthFormField(
+                    isObscure: true,
+                    initialValue: "",
+                    controller: _pwdController,
+                    focusNode: widget.pwdFocusNode,
+                    keyboardType: TextInputType.text,
+                    inputAction: TextInputAction.next,
+                    label: 'Password',
+                    hint: 'Enter your new Password',
+                    validator: (value) {
+                      Validator.validateField(
+                          value: value
+                      );
+                      getPwd = value;
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 20.0, top: 5.0),
-                    child: CustomAuthFormField(
-                      isObscure: true,
-                      initialValue: "",
-                      controller: _pwdController,
-                      focusNode: widget.pwdFocusNode,
-                      keyboardType: TextInputType.text,
-                      inputAction: TextInputAction.next,
-                      label: 'Re-Type Password',
-                      hint: 'Enter your new Password',
-                      validator: (value) {
-                        Validator.validateField(
-                            value: value
-                        );
-                        getPwd = value;
-                      },
-                    ),
+                  SizedBox(height: 15),
+                  CustomAuthFormField(
+                    isObscure: true,
+                    initialValue: "",
+                    controller: _pwdController,
+                    focusNode: widget.pwdFocusNode,
+                    keyboardType: TextInputType.text,
+                    inputAction: TextInputAction.next,
+                    label: 'Re-Type Password',
+                    hint: 'Enter your new Password',
+                    validator: (value) {
+                      Validator.validateField(
+                          value: value
+                      );
+                      getPwd = value;
+                    },
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 0.0, right: 0.0),
+              padding: EdgeInsets.all(8.0),
               child: Container(
                 width: double.maxFinite,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Color.fromRGBO(251, 215, 78, 100.0)),
+                    backgroundColor: MaterialStateProperty.all(Color.fromRGBO(251, 215, 78, 1)),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),

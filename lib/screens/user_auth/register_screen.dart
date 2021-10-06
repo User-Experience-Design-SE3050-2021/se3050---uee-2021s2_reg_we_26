@@ -1,3 +1,4 @@
+import 'package:boc_smart_passbook/screens/user_auth/login_screen.dart';
 import 'package:boc_smart_passbook/screens/user_auth/register_form.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,79 +30,82 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _contactNumberFocusNode.unfocus(),
         _pwdFocusNode.unfocus(),
       },
-      child: Stack(
-        children: <Widget>[
-          Image.asset(
-            "assets/background.png",
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ),
-          Scaffold(
-            backgroundColor: Colors.transparent,
-            body: SafeArea(
-              child: Stack(
+      child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/background.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Padding(
+              padding:  const EdgeInsets.only(
+                left: 16.0,
+                right: 16.0,
+                bottom: 20.0,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding:  const EdgeInsets.only(
-                      left: 16.0,
-                      right: 16.0,
-                      bottom: 20.0,
-                    ),
+                  SizedBox(height: 30.0,),
+                  Expanded(
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Flexible(
-                                  child: Image.asset('assets/logo.png',height: 150,)
-                              ),
-                            ],
-                          ),
-                        ),
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(196, 196, 196, 0.35),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: FutureBuilder(
-                              future: _initializeFirebase(),
-                              builder: (context, snapshot){
-                                if(snapshot.hasError){
-                                  return Text('Error Initializing Firebase');
-                                }
-                                else if(snapshot.connectionState == ConnectionState.done){
-                                  return RegisterForm(
-                                    usernameFocusNode: _usernameFocusNode,
-                                    nicFocusNode: _nicFocusNode,
-                                    contactFocusNode: _contactNumberFocusNode,
-                                    pwdFocusNode: _pwdFocusNode,
-                                  );
-                                }
-                                return const CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
-                                );
-                              }
-                          ),
-                        ),
-                        SizedBox(height: 15,),
-                        Text(
-                          "Already have an account? Sign In here",
-                          style: TextStyle(
-                            fontSize: 19.0,
-                          ),
+                        Flexible(
+                          child: Image.asset('assets/logo.png',height: 100,)
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
+                Card(
+                  color: Color.fromRGBO(196, 196, 196, 0.35),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)
+                  ),
+
+                  child: FutureBuilder(
+                    future: _initializeFirebase(),
+                    builder: (context, snapshot){
+                      if(snapshot.hasError){
+                        return Text('Error Initializing Firebase');
+                      }
+                      else if(snapshot.connectionState == ConnectionState.done){
+                        return RegisterForm(
+                          usernameFocusNode: _usernameFocusNode,
+                          nicFocusNode: _nicFocusNode,
+                          contactFocusNode: _contactNumberFocusNode,
+                          pwdFocusNode: _pwdFocusNode,
+                        );
+                      }
+                      return const CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
+                      );
+                    }
+                  ),
+                ),
+                SizedBox(height: 5,),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "Already have an account? Sign In here",
+                    style: TextStyle(
+                      fontSize: 19.0,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
