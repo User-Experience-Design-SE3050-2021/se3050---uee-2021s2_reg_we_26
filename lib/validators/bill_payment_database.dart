@@ -67,15 +67,9 @@ class BillPaymentDatabase{
       'description': description,
 
     };
-
     await documentReference.set(data).whenComplete(() => print('Note item inserted to the database')).catchError((e)=> print(e));
   }
 
-  static Stream<QuerySnapshot> readTransactions(){
-    Query<Map<String, dynamic>> notesItemCollection = _mainCollection.doc("1").collection('transaction').orderBy("date",descending: true);
-
-    return notesItemCollection.snapshots();
-  }
 }
 
 

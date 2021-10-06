@@ -1,4 +1,5 @@
 import 'package:boc_smart_passbook/custom_form_field.dart';
+import 'package:boc_smart_passbook/screens/billPayments/bills_screen.dart';
 import 'package:boc_smart_passbook/validators/bill_payment_database.dart';
 import 'package:boc_smart_passbook/validators/bill_payment_validator.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,40 @@ class _AddBillFormState extends State<AddBillForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            title: const Text('New Bill Added',style: TextStyle(fontWeight: FontWeight.w600, color: Colors.green),),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text('You have successfully added "'  + getBillName + '" as a new bill'),
+                  const SizedBox(height: 20,),
+                  const Text('Would you like to continue?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Continue'),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => BillsScreen(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
 
     return SingleChildScrollView(
       child: Form(
@@ -143,7 +178,8 @@ class _AddBillFormState extends State<AddBillForm> {
                             setState(() {
                               _isProcessing = false;
                             });
-                           Navigator.of(context).pop();
+                            _showMyDialog();
+                          // Navigator.of(context).pop();
 
                           }
                         },

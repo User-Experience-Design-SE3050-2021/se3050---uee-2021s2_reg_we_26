@@ -1,20 +1,14 @@
-//import 'package:boc_smart_passbook/screens/billPayments/payment_confirm_preview_form.dart';
 import 'package:boc_smart_passbook/screens/billPayments/payment_screen.dart';
 import 'package:boc_smart_passbook/validators/bill_payment_database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'dart:math';
-
-
 
 class PaymentConfirmScreen extends StatefulWidget {
   //const PaymentConfirmScreen({Key? key}) : super(key: key);
   final String bill;
   final String amount;
   final String remarks;
-
 
   const PaymentConfirmScreen({
     required this.bill,
@@ -34,6 +28,40 @@ class _PaymentConfirmScreenState extends State<PaymentConfirmScreen> {
   @override
   Widget build(BuildContext context) {
     bool _isProcessing = false;
+
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            title: const Text('Payment Completed Successfully',style: TextStyle(fontWeight: FontWeight.w600, color: Colors.green),),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text('You have successfully pay Rs. ' + widget.amount + ' to the ' + widget.bill),
+                  const SizedBox(height: 20,),
+                  const Text('Would you like to continue?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Continue'),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PaymentScreen(currentBill: ''),
+                    ),
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
     return
       Scaffold(
       appBar: AppBar(
@@ -293,12 +321,7 @@ class _PaymentConfirmScreenState extends State<PaymentConfirmScreen> {
                               setState(() {
                                 _isProcessing = false;
                               });
-
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => PaymentScreen(currentBill: ''),
-                                ),
-                              );
+                              _showMyDialog();
                             },
                             child: const Text(
                               'Confirm',

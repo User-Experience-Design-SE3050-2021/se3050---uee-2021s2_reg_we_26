@@ -54,36 +54,36 @@ class CustomFormForwardFieldBill extends StatelessWidget {
           labelText: isLabelEnabled ? _label:null,
           labelStyle: TextStyle(color: Colors.yellowAccent),
           hintText: _hint,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
               color: Colors.grey
           ),
-          errorStyle: TextStyle(
+          errorStyle: const TextStyle(
             color: Colors.redAccent,
             fontWeight: FontWeight.bold,
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.amberAccent,
                 width: 2,
               )
           ),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.blueGrey,
               )
           ),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.redAccent,
                 width: 2,
               )
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors.redAccent,
               width: 2,
             ),
@@ -94,18 +94,15 @@ class CustomFormForwardFieldBill extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => BillsScreen(),
+                    builder: (context) => const BillsScreen(),
                   )
               );
             },
-            icon: Icon(Icons.arrow_forward_ios_sharp),
+            icon: const Icon(Icons.arrow_forward_ios_sharp),
             color: Colors.grey,
 
           )
       ),
-
-
-
     );
   }
 }

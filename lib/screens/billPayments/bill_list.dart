@@ -13,7 +13,7 @@ class BillList extends StatelessWidget {
       stream: BillPaymentDatabase.readBills(),
       builder: (context, snapshot){
         if(snapshot.hasError){
-          return Text("Something went wrong");
+          return const Text("Something went wrong");
         }else if(snapshot.hasData || snapshot.data != null){
           return ListView.separated(
             padding: const EdgeInsets.only(top:20.0),
@@ -28,7 +28,7 @@ class BillList extends StatelessWidget {
               return Ink(
                // height: 100,
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(253, 241, 133, 1.0),
+                  color: const Color.fromRGBO(253, 241, 133, 1.0),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: ListTile(
@@ -39,23 +39,16 @@ class BillList extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => PaymentScreen(
                         currentBill: billName,
-                        // currentDescription: description,
-                        // documentId: docId,
                       ),
                     ),
                   ),
-                  // onTap: (){
-                  //   BillPaymentDatabase.deleteBill(
-                  //     docId:docId,
-                  //   );
-                  // },
                   title: Padding(
                     padding: const EdgeInsets.only(top:10.0,bottom: 25.0),
                     child: Text(
                       billName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 17.0,
                       ),
                     ),
@@ -67,12 +60,10 @@ class BillList extends StatelessWidget {
                   ),
                 ),
               );
-
             },
-
           );
         }
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
           ),

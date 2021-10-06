@@ -1,8 +1,6 @@
 import 'package:boc_smart_passbook/custom_form_field.dart';
-import 'package:boc_smart_passbook/screens/billPayments/bills_screen.dart';
 import 'package:boc_smart_passbook/screens/billPayments/custom_form_field_forward_bill.dart';
 import 'package:boc_smart_passbook/screens/billPayments/payment_confirm_preview_screen.dart';
-import 'package:boc_smart_passbook/validators/bill_payment_database.dart';
 import 'package:flutter/material.dart';
 
 class PaymentForm extends StatefulWidget {
@@ -112,22 +110,6 @@ class _PaymentFormState extends State<PaymentForm> {
                       ),
                     ),
                     const SizedBox(height: 8.0),
-                    // CustomFormField(
-                    //   initialValue: "",
-                    //   isLabelEnabled: false,
-                    //   controller: _accountController,
-                    //   focusNode: widget.accountFocusNode,
-                    //   keyboardType: TextInputType.text,
-                    //   inputAction: TextInputAction.next,
-                    //   validator: (value) {
-                    //     if (value == null || value.isEmpty) {
-                    //       return 'Please Select an Account';
-                    //     }
-                    //     getAccount = value;
-                    //   },
-                    //   label:'Select Account',
-                    //   hint: 'Select Account',
-                    // ),
                     DropdownButtonFormField(
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(color: Colors.yellowAccent),
@@ -231,10 +213,6 @@ class _PaymentFormState extends State<PaymentForm> {
                       keyboardType: TextInputType.text,
                       inputAction: TextInputAction.next,
                       validator: (value) {
-                        // Validator.validateField(
-                        //   value: value,
-                        // );
-                        //
                         getRemarks = value;
                       },
                       label:'Remarks',
@@ -265,7 +243,6 @@ class _PaymentFormState extends State<PaymentForm> {
                             ),
                           ),
                         ),
-
                       ],
                     ),
                   ],
