@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'dart:math';
+
 
 
 class PaymentConfirmScreen extends StatefulWidget {
@@ -26,6 +28,9 @@ class PaymentConfirmScreen extends StatefulWidget {
 
 class _PaymentConfirmScreenState extends State<PaymentConfirmScreen> {
 
+    int result = Random().nextInt(200);
+
+
   @override
   Widget build(BuildContext context) {
     bool _isProcessing = false;
@@ -45,12 +50,12 @@ class _PaymentConfirmScreenState extends State<PaymentConfirmScreen> {
         ),
       ),
       body: Container(
-        // decoration: const BoxDecoration(
-        //     image: DecorationImage(
-        //       image: AssetImage("assets/theme2.png"),
-        //       fit: BoxFit.cover,
-        //     )
-        // ),
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/theme2.png"),
+              fit: BoxFit.cover,
+            )
+        ),
         child: Column(
           children: [
             Expanded(
@@ -71,8 +76,8 @@ class _PaymentConfirmScreenState extends State<PaymentConfirmScreen> {
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Expanded(
+                            children:  [
+                              const Expanded(
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: Text(
@@ -88,8 +93,8 @@ class _PaymentConfirmScreenState extends State<PaymentConfirmScreen> {
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    '123',
-                                    style: TextStyle(
+                                    '$result',
+                                    style: const TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600
                                     ),
@@ -128,7 +133,7 @@ class _PaymentConfirmScreenState extends State<PaymentConfirmScreen> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 24),
+                          const SizedBox(height: 24),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -314,6 +319,6 @@ class _PaymentConfirmScreenState extends State<PaymentConfirmScreen> {
           ],
         ),
       ),
-    );;
+    );
   }
 }

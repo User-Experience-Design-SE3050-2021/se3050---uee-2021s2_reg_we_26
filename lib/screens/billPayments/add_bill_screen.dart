@@ -8,7 +8,7 @@ class AddBillScreen extends StatelessWidget {
   final FocusNode _billNameFocusNode = FocusNode();
   final FocusNode _accountNumberFocusNode = FocusNode();
 
-  Future<FirebaseApp> _initializeFirebase() async{
+  Future<FirebaseApp> _initializeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     return firebaseApp;
   }
@@ -16,7 +16,7 @@ class AddBillScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         _billNameFocusNode.unfocus();
         _accountNumberFocusNode.unfocus();
       },
@@ -25,8 +25,8 @@ class AddBillScreen extends StatelessWidget {
           iconTheme: const IconThemeData(
             color: Colors.black54,
           ),
-          backgroundColor: const Color.fromRGBO(253,198,13,1),
-          title:const Text(
+          backgroundColor: const Color.fromRGBO(253, 198, 13, 1),
+          title: const Text(
             'Add Bill',
             style: TextStyle(
               color: Colors.black54,
@@ -36,36 +36,40 @@ class AddBillScreen extends StatelessWidget {
         body: SafeArea(
           child: Stack(
             children: [
-              Padding(
-                  padding: const EdgeInsets.only(
-                      left: 16.0,
-                      right: 16.0,
-                      bottom: 20.0
-                  ),
-                  child:  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      FutureBuilder(
-                          future: _initializeFirebase(),
-                          builder: (context,snapshot){
-                            if(snapshot.hasError){
-                              return Text('Error Initializing Firebase');
-                            }
-                            else if(snapshot.connectionState == ConnectionState.done){
-                              return AddBillForm(
+              Container(
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage("assets/theme2.png"),
+                  fit: BoxFit.cover,
+                )),
+                child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 16.0, right: 16.0, bottom: 20.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        FutureBuilder(
+                            future: _initializeFirebase(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return const Text(
+                                    'Error Initializing Firebase');
+                              } else if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                return AddBillForm(
                                   billNameFocusNode: _billNameFocusNode,
-                                  accountNumberFocusNode: _accountNumberFocusNode,
+                                  accountNumberFocusNode:
+                                      _accountNumberFocusNode,
+                                );
+                              }
+                              return const CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.orangeAccent),
                               );
-                            }
-                            return CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
-                            );
-                          }
-
-                      ),
-                    ],
-                  )
-              )
+                            }),
+                      ],
+                    )),
+              ),
             ],
           ),
         ),
