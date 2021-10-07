@@ -30,9 +30,17 @@ class AddLoanScreen extends StatelessWidget {
           ),
         ),
         body: SafeArea(
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+              image: AssetImage("assets/theme2.png"),
+              fit: BoxFit.cover,
+           )
+          ),
           child: Stack(
             children: [
-              Padding(
+              SingleChildScrollView(
+              child: Padding(
                   padding: const EdgeInsets.only(
                       left: 16.0,
                       right: 16.0,
@@ -61,9 +69,11 @@ class AddLoanScreen extends StatelessWidget {
                       ),
                     ],
                   )
-              )
+              ),
+              ),
             ],
           ),
+        ),
         ),
       ),
     );

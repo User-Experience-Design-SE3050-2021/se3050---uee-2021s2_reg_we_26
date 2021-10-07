@@ -55,25 +55,35 @@ class _LoanScreenState extends State<LoanScreen> {
                 return Text('Error Initializing Firebase');
               }else if(snapshot.connectionState == ConnectionState.done){
                 return SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 16.0,right: 16.0,bottom: 20.0,top: 20.0),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("assets/theme2.png"),
+                            fit: BoxFit.cover,
+                          )
                       ),
-                      color: Color.fromRGBO(229, 229, 229, 1.0),
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0,right: 16.0,bottom: 20.0),
-                        child: LoanList(),
+                        padding: const EdgeInsets.only(left: 16.0,right: 16.0,bottom: 20.0,top: 20.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          color: Color.fromRGBO(229, 229, 229, 1.0),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 16.0,right: 16.0,bottom: 20.0),
+                            child: LoanList(),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
                 );
               }
               return CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
               );
-            })
+            }
+
+            )
     );
   }
 }

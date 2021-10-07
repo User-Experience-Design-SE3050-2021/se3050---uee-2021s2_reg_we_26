@@ -38,11 +38,11 @@ class LoanList extends StatelessWidget {
                   title: Padding(
                     padding: const EdgeInsets.only(top:10.0,bottom: 25.0),
                     child: Text(
-                      amount,
+                      "Period : "+period,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 17.0,
+                        fontSize: 12.0,
                       ),
                     ),
                   ),
@@ -50,8 +50,10 @@ class LoanList extends StatelessWidget {
                     "Amount  :  $amount",
                     maxLines: 1,
                     overflow:  TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 17.0,
+                    ),
                   ),
-
                 ),
               );
 
