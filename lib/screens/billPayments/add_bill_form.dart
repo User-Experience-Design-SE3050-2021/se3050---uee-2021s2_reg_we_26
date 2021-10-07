@@ -43,7 +43,7 @@ class _AddBillFormState extends State<AddBillForm> {
         builder: (BuildContext context) {
           return AlertDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            title: const Text('New Bill Added',style: TextStyle(fontWeight: FontWeight.w600, color: Colors.green),),
+            title: const Text('New Bill Added',style: TextStyle(fontWeight: FontWeight.w600),),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[

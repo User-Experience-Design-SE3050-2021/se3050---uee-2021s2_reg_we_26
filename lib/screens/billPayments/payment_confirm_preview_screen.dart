@@ -36,7 +36,7 @@ class _PaymentConfirmScreenState extends State<PaymentConfirmScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            title: const Text('Payment Completed Successfully',style: TextStyle(fontWeight: FontWeight.w600, color: Colors.green),),
+            title: const Text('Payment Completed Successfully',style: TextStyle(fontWeight: FontWeight.w600),),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
