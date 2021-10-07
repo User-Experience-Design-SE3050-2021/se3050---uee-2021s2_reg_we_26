@@ -4,7 +4,6 @@ import 'package:boc_smart_passbook/screens/billPayments/payment_confirm_preview_
 import 'package:flutter/material.dart';
 
 class PaymentForm extends StatefulWidget {
-
   final String currentBill;
 
   final FocusNode billFocusNode;
@@ -27,10 +26,12 @@ class PaymentForm extends StatefulWidget {
 }
 
 class _PaymentFormState extends State<PaymentForm> {
-
   final _addItemFormKey = GlobalKey<FormState>();
 
-  final List<String> ownAccount = ['Account 1 - 423434564','Account 2 - 2354545'];
+  final List<String> ownAccount = [
+    'Account 1 - 423434564',
+    'Account 2 - 2354545'
+  ];
   bool _isProcessing = false;
 
   final TextEditingController _billController = TextEditingController();
@@ -40,16 +41,13 @@ class _PaymentFormState extends State<PaymentForm> {
 
   bool isChecked = false;
 
-
   String getBill = '';
   String getAccount = '';
   String getAmount = '';
   String getRemarks = '';
 
-
   @override
   Widget build(BuildContext context) {
-
     Color getColor(Set<MaterialState> states) {
       const Set<MaterialState> interactiveStates = <MaterialState>{
         MaterialState.pressed,
@@ -61,13 +59,15 @@ class _PaymentFormState extends State<PaymentForm> {
       }
       return Colors.grey;
     }
+
     return SingleChildScrollView(
       child: Form(
           key: _addItemFormKey,
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 8.0,right: 8.0,bottom: 24.0),
+                padding:
+                    const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -76,7 +76,7 @@ class _PaymentFormState extends State<PaymentForm> {
                       'Select Bill',
                       style: TextStyle(
                         color: Colors.black45,
-                        fontSize : 19.0,
+                        fontSize: 19.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold,
                       ),
@@ -95,16 +95,15 @@ class _PaymentFormState extends State<PaymentForm> {
                         }
                         getBill = value;
                       },
-                      label:'Select Bill',
+                      label: 'Select Bill',
                       hint: 'Select a Bill',
-
                     ),
                     const SizedBox(height: 24.0),
                     const Text(
                       'Select Account',
                       style: TextStyle(
                         color: Colors.black45,
-                        fontSize : 19.0,
+                        fontSize: 19.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold,
                       ),
@@ -113,9 +112,7 @@ class _PaymentFormState extends State<PaymentForm> {
                     DropdownButtonFormField(
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(color: Colors.yellowAccent),
-                        hintStyle: const TextStyle(
-                            color: Colors.grey
-                        ),
+                        hintStyle: const TextStyle(color: Colors.grey),
                         errorStyle: const TextStyle(
                           color: Colors.redAccent,
                           fontWeight: FontWeight.bold,
@@ -125,21 +122,18 @@ class _PaymentFormState extends State<PaymentForm> {
                             borderSide: const BorderSide(
                               color: Colors.amberAccent,
                               width: 2,
-                            )
-                        ),
+                            )),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide: const BorderSide(
                               color: Colors.grey,
-                            )
-                        ),
+                            )),
                         errorBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide: const BorderSide(
                               color: Colors.redAccent,
                               width: 2,
-                            )
-                        ),
+                            )),
                         focusedErrorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           borderSide: const BorderSide(
@@ -152,12 +146,12 @@ class _PaymentFormState extends State<PaymentForm> {
                         setState(() => getAccount = val.toString());
                       },
                       hint: const Text('Select Account'),
-                     // value: getAccount.isEmpty ? 'Isira - 423434564' : getAccount,
+                      // value: getAccount.isEmpty ? 'Isira - 423434564' : getAccount,
                       validator: (val) {
-                        if(val == null || val.toString().isEmpty){
+                        if (val == null || val.toString().isEmpty) {
                           return 'Please select an account';
                         }
-                       // getAccountNo = val.toString();
+                        // getAccountNo = val.toString();
                       },
                       items: ownAccount.map((account) {
                         return DropdownMenuItem(
@@ -171,7 +165,7 @@ class _PaymentFormState extends State<PaymentForm> {
                       'Amount',
                       style: TextStyle(
                         color: Colors.black45,
-                        fontSize : 19.0,
+                        fontSize: 19.0,
                         letterSpacing: 1,
                         fontWeight: FontWeight.bold,
                       ),
@@ -190,19 +184,34 @@ class _PaymentFormState extends State<PaymentForm> {
                         }
                         getAmount = value;
                       },
-                      label:'Amount',
+                      label: 'Amount',
                       hint: 'LKR 0.00',
                     ),
                     const SizedBox(height: 24.0),
-                    const Text(
-                      'Remarks',
-                      style: TextStyle(
-                        color: Colors.black45,
-                        fontSize : 19.0,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.bold,
+                    Row(children: const [
+                      Text(
+                        'Remarks',
+                        style: TextStyle(
+                          color: Colors.black45,
+                          fontSize: 19.0,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
+                      Expanded(
+                          child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          '(Optional)',
+                          style: TextStyle(
+                            color: Colors.black45,
+                            fontSize: 16.0,
+                            letterSpacing: 1,
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ))
+                    ]),
                     const SizedBox(height: 8.0),
                     CustomFormField(
                       initialValue: "",
@@ -215,7 +224,7 @@ class _PaymentFormState extends State<PaymentForm> {
                       validator: (value) {
                         getRemarks = value;
                       },
-                      label:'Remarks',
+                      label: 'Remarks',
                       hint: 'Remarks',
                     ),
                     const SizedBox(height: 24.0),
@@ -223,7 +232,8 @@ class _PaymentFormState extends State<PaymentForm> {
                       children: [
                         Checkbox(
                           checkColor: Colors.white,
-                          fillColor: MaterialStateProperty.resolveWith(getColor),
+                          fillColor:
+                              MaterialStateProperty.resolveWith(getColor),
                           focusNode: widget.chekFocusNode,
                           value: isChecked,
                           onChanged: (bool? value) {
@@ -239,8 +249,7 @@ class _PaymentFormState extends State<PaymentForm> {
                                 color: Colors.black45,
                                 fontSize: 14.0,
                                 letterSpacing: 1,
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
@@ -255,68 +264,72 @@ class _PaymentFormState extends State<PaymentForm> {
                   children: [
                     _isProcessing
                         ? const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
-                      ),
-                    ) : SizedBox(
-                      width: 140,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(253,198,13,1)),
-                          shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )
-                          ),
-                        ),
-                        onPressed: () async{
-                          widget.billFocusNode.unfocus();
-                          widget.accountFocusNode.unfocus();
-                          widget.amountFocusNode.unfocus();
-                          widget.remarksFocusNode.unfocus();
-                          widget.chekFocusNode.unfocus();
+                            padding: EdgeInsets.all(16.0),
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.orangeAccent),
+                            ),
+                          )
+                        : SizedBox(
+                            width: 140,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    const Color.fromRGBO(253, 198, 13, 1)),
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                              ),
+                              onPressed: () async {
+                                widget.billFocusNode.unfocus();
+                                widget.accountFocusNode.unfocus();
+                                widget.amountFocusNode.unfocus();
+                                widget.remarksFocusNode.unfocus();
+                                widget.chekFocusNode.unfocus();
 
-                          if(_addItemFormKey.currentState!.validate() && isChecked == true){
-                            setState(() {
-                              _isProcessing = true;
-                            });
-                           //   await BillPaymentDatabase.payBill(amount: getAmount,description:getBill);
-                            setState(() {
-                              _isProcessing = false;
-                            });
-                          //Navigator.of(context).pop();
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => PaymentConfirmScreen(
-                                    bill : getBill,
-                                    amount: getAmount,
-                                    remarks: getRemarks,
+                                if (_addItemFormKey.currentState!.validate() &&
+                                    isChecked == true) {
+                                  setState(() {
+                                    _isProcessing = true;
+                                  });
+                                  //   await BillPaymentDatabase.payBill(amount: getAmount,description:getBill);
+                                  setState(() {
+                                    _isProcessing = false;
+                                  });
+                                  //Navigator.of(context).pop();
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PaymentConfirmScreen(
+                                        bill: getBill,
+                                        amount: getAmount,
+                                        remarks: getRemarks,
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
+                              child: const Padding(
+                                padding:
+                                    EdgeInsets.only(top: 16.0, bottom: 16.0),
+                                child: Text(
+                                  'Pay',
+                                  style: TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black45,
+                                    letterSpacing: 2,
+                                  ),
                                 ),
                               ),
-                            );
-                          }
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.only(top: 16.0,bottom: 16.0),
-                          child: Text(
-                            'Pay',
-                            style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black45,
-                              letterSpacing: 2,
                             ),
-                          ),
-                        ),
-                      ),
-                    )
+                          )
                   ],
                 ),
               )
             ],
-          )
-      ),
+          )),
     );
   }
 }
