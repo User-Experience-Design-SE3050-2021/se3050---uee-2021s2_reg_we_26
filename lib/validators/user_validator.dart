@@ -1,7 +1,7 @@
 class Validator{
   static String? validateField({required String value}) {
-    if (value.isEmpty) {
-      return 'Cannot be empty';
+    if (value.isEmpty || value == null) {
+      return 'Please enter necessary details';
     }
     return null;
   }

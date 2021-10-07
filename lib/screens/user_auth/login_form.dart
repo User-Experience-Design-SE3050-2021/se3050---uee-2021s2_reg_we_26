@@ -1,3 +1,5 @@
+import 'package:boc_smart_passbook/screens/dashboard/dashboard_screen.dart';
+import 'package:boc_smart_passbook/validators/user_database.dart';
 import 'package:boc_smart_passbook/validators/user_validator.dart';
 import 'package:flutter/material.dart';
 import 'custom_auth_form_field.dart';
@@ -24,6 +26,7 @@ class _LoginFormState extends State<LoginForm> {
 
   String getUserName = "";
   String getPwd = "";
+  bool _isProcessing = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,8 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 20.0, top: 10.0),
+              padding: const EdgeInsets.only(
+                  left: 10.0, right: 10.0, bottom: 20.0, top: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -55,9 +59,7 @@ class _LoginFormState extends State<LoginForm> {
                     label: 'Enter User NIC',
                     hint: 'Enter your NIC number',
                     validator: (value) {
-                      Validator.validateField(
-                          value: value
-                      );
+                      Validator.validateField(value: value);
                       getUserName = value;
                     },
                   ),
@@ -72,43 +74,73 @@ class _LoginFormState extends State<LoginForm> {
                     label: 'Password',
                     hint: 'Enter your Password',
                     validator: (value) {
-                      Validator.validateField(
-                          value: value
-                      );
+                      Validator.validateField(value: value);
                       getPwd = value;
                     },
                   ),
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 8.0 , right: 8.0, bottom: 8.0),
-              child: Container(
-                  width: double.maxFinite,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Color.fromRGBO(251, 215, 78, 1)),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+            _isProcessing
+                ? Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          Color.fromRGBO(251, 215, 78, 1)),
+                    ),
+                  )
+                : Padding(
+                    padding:
+                        EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+                    child: Container(
+                      width: double.maxFinite,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              Color.fromRGBO(251, 215, 78, 1)),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        ),
+                        onPressed: () async {
+                          widget.nicFocusNode.unfocus();
+                          widget.pwdFocusNode.unfocus();
+
+                          if (_LoginInFormKey.currentState!.validate()) {
+                            setState((){
+                              _isProcessing = true;
+                            });
+
+                            await Database.loginUser(nic: getUserName, password: getPwd);
+
+                            setState((){
+                              _isProcessing = false;
+                            });
+
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const DashboardScreen(),
+                              ),
+                            );
+                          }
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
+                          child: Text(
+                            'Sign In',
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.black,
+                              letterSpacing: 2,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    onPressed: (){},
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
-                      child: Text(
-                        'Sign In',
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.black,
-                          letterSpacing: 2,
-                        ),
-                      ),
-                    ),
-                  ),
-              ),
-            )
+                  )
           ],
         ),
       ),

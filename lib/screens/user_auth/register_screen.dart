@@ -21,6 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     return firebaseApp;
   }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -31,64 +32,68 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _pwdFocusNode.unfocus(),
       },
       child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/background.png"),
-                fit: BoxFit.cover,
-              ),
+        backgroundColor: Colors.transparent,
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/background.png"),
+              fit: BoxFit.cover,
             ),
-            child: Padding(
-              padding:  const EdgeInsets.only(
-                left: 16.0,
-                right: 16.0,
-                bottom: 20.0,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  SizedBox(height: 30.0,),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: Image.asset('assets/logo.png',height: 100,)
-                        ),
-                      ],
-                    ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+              bottom: 20.0,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                SizedBox(
+                  height: 30.0,
+                ),
+                Expanded(
+                  child: Column(
+                    // mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Flexible(
+                          child: Image.asset(
+                        'assets/logo.png',
+                        height: 100,
+                      )),
+                    ],
                   ),
+                ),
                 Card(
                   color: Color.fromRGBO(196, 196, 196, 0.35),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0)
-                  ),
-
+                      borderRadius: BorderRadius.circular(8.0)),
                   child: FutureBuilder(
-                    future: _initializeFirebase(),
-                    builder: (context, snapshot){
-                      if(snapshot.hasError){
-                        return Text('Error Initializing Firebase');
-                      }
-                      else if(snapshot.connectionState == ConnectionState.done){
-                        return RegisterForm(
-                          usernameFocusNode: _usernameFocusNode,
-                          nicFocusNode: _nicFocusNode,
-                          contactFocusNode: _contactNumberFocusNode,
-                          pwdFocusNode: _pwdFocusNode,
+                      future: _initializeFirebase(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('Error Initializing Firebase');
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.done) {
+                          return RegisterForm(
+                            usernameFocusNode: _usernameFocusNode,
+                            nicFocusNode: _nicFocusNode,
+                            contactFocusNode: _contactNumberFocusNode,
+                            pwdFocusNode: _pwdFocusNode,
+                          );
+                        }
+                        return const CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Color.fromRGBO(253, 198, 13, 1)),
                         );
-                      }
-                      return const CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.orangeAccent),
-                      );
-                    }
-                  ),
+                      }),
                 ),
-                SizedBox(height: 5,),
+                SizedBox(
+                  height: 5,
+                ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => const LoginScreen(),

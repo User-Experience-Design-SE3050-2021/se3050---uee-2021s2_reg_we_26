@@ -12,7 +12,7 @@ class Database{
     required String contact,
     required String password,
   }) async {
-    DocumentReference documentReference = _mainCollection.doc(userId).collection('users').doc();
+    DocumentReference documentReference = _mainCollection.doc('user').collection('users').doc();
 
     Map<String, dynamic> data = <String, dynamic>{
       "username": username,
@@ -24,6 +24,43 @@ class Database{
     await documentReference.set(data).whenComplete(() => print("Successfully registered")).catchError((e) => print(e));
   }
 
+  static Future<void> loginUser({
+    required String nic,
+    required String password,
+  }) async {
+    DocumentReference documentReference = _mainCollection.doc('user').collection('users').doc();
+
+    Map<String, dynamic> data = <String, dynamic>{
+      "nic": nic,
+      "password": password,
+    };
+
+    await documentReference.set(data).whenComplete(() => print("Successfully registered")).catchError((e) => print(e));
+  }
+
+  // static Future<void> readUserAvailability({
+  //   required String nic,
+  //   required String password,
+  // }) async {
+  //   String user;
+  //   String pwd;
+  //   String docId;
+  //
+  //   var querySnapshot = QuerySnapshot;
+  //
+  //   FirebaseFirestore.instance
+  //   .collection('users')
+  //   .where('nic', isEqualTo: nic)
+  //   .where('password', isEqualTo: password)
+  //   .get().then((querySnapshot){
+  //     querySnapshot.docs.forEach((result) {
+  //       print(result.data());
+  //     });
+  //   });
+  //
+  //   // CollectionReference userCollection = _mainCollection.doc('')
+  // }
+
   static Future<void> updateUser({
     required String username,
     required String nic,
@@ -31,7 +68,7 @@ class Database{
     required String password,
     required String docId,
   }) async {
-    DocumentReference documentReference = _mainCollection.doc(userId).collection('users').doc(docId);
+    DocumentReference documentReference = _mainCollection.doc('1').collection('users').doc(docId);
 
     Map<String, dynamic> data = <String, dynamic>{
       "username": username,
@@ -43,16 +80,16 @@ class Database{
     await documentReference.set(data).whenComplete(() => print("User data updated")).catchError((e) => print(e));
   }
 
-  static Stream<QuerySnapshot> readItems(){
-    CollectionReference notesItemCollection = _mainCollection.doc(userId).collection('users');
+  static Stream<QuerySnapshot> readTransactions(){
+    CollectionReference transactionsItemCollection = _mainCollection.doc("1").collection("transaction");
 
-    return notesItemCollection.snapshots();
+    return transactionsItemCollection.snapshots();
   }
 
-  static Future<void> deleteItem({
+  static Future<void> deleteUser({
     required String docId,
   }) async {
-    DocumentReference documentReference = _mainCollection.doc(userId).collection('users').doc(docId);
+    DocumentReference documentReference = _mainCollection.doc('1').collection('users').doc(docId);
 
     await documentReference.delete().whenComplete(() =>  print("Successfully Deactivated")).catchError((e) => print(e));
   }
