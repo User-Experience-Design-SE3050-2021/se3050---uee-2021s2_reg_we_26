@@ -4,6 +4,7 @@ import 'package:boc_smart_passbook/screens/billPayments/payment_screen.dart';
 import 'package:boc_smart_passbook/screens/fund_transfer/menu.dart';
 import 'package:boc_smart_passbook/screens/user_auth/login_screen.dart';
 import 'package:boc_smart_passbook/screens/user_auth/register_screen.dart';
+import 'package:boc_smart_passbook/screens/instantLoans/instant_loan.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -93,8 +94,14 @@ class MyHomePage extends StatelessWidget {
                     primary: Colors.black45,
                     fixedSize: Size(150,50),
                   ),
-                  onPressed: (){},
-                  child: Text('Apply Loan'),
+                  onPressed: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const LoanMenu(),
+                      ),
+                    );
+                  },
+                  child: Text('Instant Loan'),
                 ),
                 SizedBox(height: 20.0),
                 ElevatedButton(
