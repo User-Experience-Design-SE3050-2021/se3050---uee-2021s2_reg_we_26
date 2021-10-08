@@ -35,8 +35,10 @@ class TransactionList extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Text(
-                        description,
+                      Container(
+                        child: Text(
+                          description,
+                        ),
                       ),
                     ],
                   ),

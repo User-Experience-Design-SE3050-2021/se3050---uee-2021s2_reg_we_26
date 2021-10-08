@@ -120,7 +120,7 @@ class _LoginFormState extends State<LoginForm> {
                     hint: 'Enter your Password',
                     validator: (value) {
                       if (value.isEmpty || value == null) {
-                        return 'Please enter username';
+                        return 'Please enter password';
                       }
                       getPwd = value;
                     },
