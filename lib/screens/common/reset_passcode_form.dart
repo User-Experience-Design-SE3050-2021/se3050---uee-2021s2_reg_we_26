@@ -89,7 +89,7 @@ class _ResetPasscodeFormState extends State<ResetPasscodeForm> {
                             color: Colors.amberAccent,
                             width: 2,
                           )),
-                      enabledBorder: OutlineInputBorder(
+                      disabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           borderSide: BorderSide(
                             color: Colors.blueGrey,

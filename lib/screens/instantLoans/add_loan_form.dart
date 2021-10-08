@@ -182,7 +182,7 @@ class _AddLoanFormState extends State<AddLoanForm> {
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: SizedBox(
-                              width: 155,
+                              width: 165,
                               height: 55,
                               child: ElevatedButton(
                                 style: ButtonStyle(
@@ -409,7 +409,7 @@ class _AddLoanFormState extends State<AddLoanForm> {
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: SizedBox(
-                          width: 155,
+                          width: 165,
                           height: 55,
                           child: ElevatedButton(
                             style: ButtonStyle(

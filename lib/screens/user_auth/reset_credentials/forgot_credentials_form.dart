@@ -73,7 +73,7 @@ class _ForgotCredentialsFormState extends State<ForgotCredentialsForm> {
                   ),
                   SizedBox(height: 10),
                   CustomAuthFormField(
-                    isObscure: true,
+                    isObscure: false,
                     initialValue: "",
                     controller: _contactController,
                     focusNode: widget.contactFocusNode,
