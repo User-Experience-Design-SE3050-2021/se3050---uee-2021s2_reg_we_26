@@ -54,7 +54,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            title: const Text('Created Loan Successfully',style: TextStyle(fontWeight: FontWeight.w600, color: Colors.green),),
+            title: const Text('Created Loan Successfully',style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black45),),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
@@ -127,22 +127,22 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Loan Amount',
+                                      'Loan Amount (Rs.)',
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600
                                       ),
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   child: Align(
-                                    alignment: Alignment.topLeft,
+                                    alignment: Alignment.topRight,
                                     child: Text(
                                      widget.totalPayment,
                                       style: const TextStyle(
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w600
+                                          fontWeight: FontWeight.w500
                                       ),
                                     ),
                                   ),
@@ -157,22 +157,22 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Loan Period(In Months)',
+                                      'Loan Period     (In Months)',
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600
                                       ),
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   child: Align(
-                                    alignment: Alignment.topLeft,
+                                    alignment: Alignment.topRight,
                                     child: Text(
                                       widget.period,
                                       style: const TextStyle(
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w600
+                                          fontWeight: FontWeight.w500
                                       ),
                                     ),
                                   ),
@@ -187,22 +187,22 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Interest Per Month',
+                                      'Interest Per Year',
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600
                                       ),
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   child: Align(
-                                    alignment: Alignment.topLeft,
+                                    alignment: Alignment.topRight,
                                     child: Text(
                                       '2%',
                                       style: const TextStyle(
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w600
+                                          fontWeight: FontWeight.w500
                                       ),
                                     ),
                                   ),
@@ -219,20 +219,20 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                     child: Text(
                                       'Monthly EMI',
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600
                                       ),
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   child: Align(
-                                    alignment: Alignment.topLeft,
+                                    alignment: Alignment.topRight,
                                     child: Text(
                                       widget.emi,
                                       style: const TextStyle(
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w600
+                                          fontWeight: FontWeight.w500
                                       ),
                                     ),
                                   ),
@@ -249,20 +249,20 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                     child: Text(
                                       'Total Payment',
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600
                                       ),
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   child: Align(
-                                    alignment: Alignment.topLeft,
+                                    alignment: Alignment.topRight,
                                     child: Text(
                                       widget.totalPayment,
                                       style: const TextStyle(
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w600
+                                          fontWeight: FontWeight.w500
                                       ),
                                     ),
                                   ),
@@ -279,20 +279,20 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                     child: Text(
                                       'Date',
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600
                                       ),
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   child: Align(
-                                    alignment: Alignment.topLeft,
+                                    alignment: Alignment.topRight,
                                     child: Text(
                                       DateFormat.yMMMd().format(DateTime.now()),
                                       style: const TextStyle(
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w600
+                                          fontWeight: FontWeight.w500
                                       ),
                                     ),
                                   ),
@@ -313,7 +313,6 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                     checkColor: Colors.white,
                     fillColor:
                     MaterialStateProperty.resolveWith(getColor),
-                  //  focusNode: widget.chekFocusNode,
                     value: isChecked,
                     onChanged: (bool? value) {
                       setState(() {
@@ -323,7 +322,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                   ),
                   const Expanded(
                     child: Text(
-                      "I here by confirm that the above information is true and correct",
+                      "I here by confirm that I am agree to continue my payments according to the above conditions.",
                       style: TextStyle(
                           color: Colors.black45,
                           fontSize: 14.0,

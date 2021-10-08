@@ -28,29 +28,45 @@ class LoanMenu extends StatelessWidget {
           fit: BoxFit.cover,
         )),
         child: Center(
+
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
+
               children: [
+                SizedBox(height: 40.0),
+
                 ListTile(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
+
                   ),
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 10.0, bottom: 25.0),
-                    child: Text(
-                      "            Get the money you need,                               "
-                      "Whenever you need it!!!!!!!!,  Enjoy the most easiest and fastest loans "
-                      " up-to LKR 400 000 with the lowest "
-                      "interest. We provide the best services for you.",
-                      maxLines: 5,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        fontSize: 15.0,
+                  title: Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(253, 198, 13, 1),
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(10)
+                          )
+
+                      ),
+
+                     child: Padding(
+
+                      padding: const EdgeInsets.only(top: 10.0, bottom: 40.0, left: 15, right: 15),
+                      child: Text(
+                        "            Get the money you need,        "
+                        "Whenever you need it!!!!!!!!,  Enjoy the most easiest and fastest loans "
+                        " up-to LKR 400 000 with the lowest "
+                        "interest. We provide the best services for you.",
+                        maxLines: 5,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                        ),
                       ),
                     ),
                   ),
@@ -60,13 +76,23 @@ class LoanMenu extends StatelessWidget {
                     flex: 1,
                     child: Image.asset(
                       'assets/instantLoan.png',
-                      height: 1400,
+                      height: 1600,
                     )),
                 FlatButton(
+
                     textColor: Colors.white,
-                    height: 30.0,
-                    minWidth: 150,
-                    color: Colors.cyan,
+                    height: 50.0,
+                    color: Colors.amber,
+                    // style: ButtonStyle(
+                    //   backgroundColor: MaterialStateProperty.all(Colors.black12),
+                    //   shape: MaterialStateProperty.all(
+                    //       RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(10),
+                    //       )
+                    //   ),
+                    // ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -79,13 +105,20 @@ class LoanMenu extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          'EMAIL',
+                          '         Add Instant Loan',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black45,
+                            letterSpacing: 2,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Icon(
-                            Icons.email,
-                            color: Colors.white,
+                            Icons.add_circle,
+                            color: Colors.black45,
+                            size: 39,
                           ),
                         ),
                       ],
@@ -96,8 +129,11 @@ class LoanMenu extends StatelessWidget {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Colors.black45,
-                    fixedSize: Size(350, 50),
+                    fixedSize: Size(450, 55),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
                   ),
+
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -110,6 +146,7 @@ class LoanMenu extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
                     ),
                   ),
                 ),
