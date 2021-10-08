@@ -42,12 +42,12 @@ class LoanList extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 13.0,
                       ),
                     ),
                   ),
                   subtitle: Text(
-                    "Amount(Rs.)  :  $amount",
+                    "Amount(Rs.)  :  $amount.00",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

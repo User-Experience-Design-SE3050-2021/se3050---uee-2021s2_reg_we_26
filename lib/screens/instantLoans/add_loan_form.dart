@@ -249,7 +249,7 @@ class _AddLoanFormState extends State<AddLoanForm> {
           ],
         ),
       ),
-      SizedBox(height: 40.0),
+      SizedBox(height: 35.0),
       Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -258,7 +258,7 @@ class _AddLoanFormState extends State<AddLoanForm> {
           child: Container(
               child: Padding(
                   padding: const EdgeInsets.only(
-                      left: 16.0, right: 16.0, bottom: 20.0, top: 20.0),
+                      left: 16.0, right: 16.0, bottom: 60.0, top: 40.0),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -279,7 +279,7 @@ class _AddLoanFormState extends State<AddLoanForm> {
                                 ),
                               ),
                             ]),
-                        SizedBox(height: 20.0),
+                        SizedBox(height: 30.0),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

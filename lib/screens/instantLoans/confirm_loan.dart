@@ -63,7 +63,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                 children: <Widget>[
                   Text('You have successfully got Rs. ' +
                       widget.amount +
-                      ' for ' +
+                      '.00 for ' +
                       widget.period +
                       'Month Installment'),
                   const SizedBox(
@@ -144,7 +144,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                 child: Align(
                                   alignment: Alignment.topRight,
                                   child: Text(
-                                    widget.amount,
+                                    widget.amount + ".00",
                                     style: const TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500),
