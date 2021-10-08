@@ -66,6 +66,11 @@ flutter:
     - assets/welcome_page.png
     - assets/theme1.png
     - assets/theme2.png
+    - assets/sign_in_page.png
+    - assets/sign_up_page.png
+    - assets/background.png
+    - assets/logo.png
+    - assets/bg_common.png
     - assets/instantLoan.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
