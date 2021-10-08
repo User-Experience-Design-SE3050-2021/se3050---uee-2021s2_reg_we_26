@@ -1,5 +1,9 @@
+import 'package:boc_smart_passbook/screens/common/settings_screen.dart';
+import 'package:boc_smart_passbook/screens/dashboard/dashboard_screen.dart';
 import 'package:boc_smart_passbook/screens/billPayments/payment_screen.dart';
 import 'package:boc_smart_passbook/screens/fund_transfer/menu.dart';
+import 'package:boc_smart_passbook/screens/user_auth/login_screen.dart';
+import 'package:boc_smart_passbook/screens/user_auth/register_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -98,8 +102,59 @@ class MyHomePage extends StatelessWidget {
                     primary: Colors.black45,
                     fixedSize: Size(150,50),
                   ),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  },
                   child: Text('Profile'),
+                ),
+                SizedBox(height: 20.0),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black45,
+                    fixedSize: Size(150,50),
+                  ),
+                  onPressed: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterScreen(),
+                      ),
+                    );
+                  },
+                  child: Text('Register'),
+                ),
+                SizedBox(height: 20.0),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black45,
+                    fixedSize: Size(150,50),
+                  ),
+                  onPressed: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const SettingScreen(),
+                      ),
+                    );
+                  },
+                  child: Text('Settings'),
+                ),
+                SizedBox(height: 20.0),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black45,
+                    fixedSize: Size(150,50),
+                  ),
+                  onPressed: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const DashboardScreen(),
+                      ),
+                    );
+                  },
+                  child: Text('Dashboard'),
                 ),
               ],
             ),
