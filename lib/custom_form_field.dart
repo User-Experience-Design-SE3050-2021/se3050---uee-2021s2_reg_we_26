@@ -70,7 +70,7 @@ class CustomFormField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
             borderSide: BorderSide(
-              color: Colors.blueGrey,
+              color: Colors.grey,
             )
         ),
         errorBorder: OutlineInputBorder(
