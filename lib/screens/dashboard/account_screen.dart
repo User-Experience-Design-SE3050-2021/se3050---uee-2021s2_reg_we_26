@@ -128,7 +128,7 @@ class _AccountScreenState extends State<AccountScreen> {
                             Row(
                               children: [
                                 Text(
-                                  'Account Number : xxxxxxxxxxxxx',
+                                  'Account Number : 241587452360',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20.0,

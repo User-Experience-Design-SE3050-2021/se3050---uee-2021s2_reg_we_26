@@ -187,9 +187,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             width: 10.0,
                           ),
                           Text(
-                            "SIGN OUT",
+                            "Sign Out",
                             style: TextStyle(
-                                letterSpacing: 2.2, color: Colors.black),
+                                letterSpacing: 2.2,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.0),
                           ),
                         ],
                       ),
@@ -294,7 +297,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Account Number : xxxxxxxxxxxxx',
+                                    'Account Number : 241587452360',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.0,
@@ -418,7 +421,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Account Number : xxxxxxxxxxxxx',
+                                    'Account Number : 541287892361',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.0,
@@ -542,7 +545,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Account Number : xxxxxxxxxxxxx',
+                                    'Account Number : 712587452393',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.0,

@@ -78,7 +78,7 @@ class Database{
   static Future<void> deleteUser({
     required String docId,
   }) async {
-    DocumentReference documentReference = _mainCollection.doc('1').collection('users').doc(docId);
+    DocumentReference documentReference = _mainCollection.doc('user').collection('users').doc(docId);
 
     await documentReference.delete().whenComplete(() =>  print("Successfully Deactivated")).catchError((e) => print(e));
   }
