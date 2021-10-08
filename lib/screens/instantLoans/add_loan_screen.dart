@@ -33,43 +33,43 @@ class AddLoanScreen extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-          child: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage("assets/theme2.png"),
-              fit: BoxFit.cover,
-            )),
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 16.0, right: 16.0, bottom: 20.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FutureBuilder(
-                              future: _initializeFirebase(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasError) {
-                                  return Text('Error Initializing Firebase');
-                                } else if (snapshot.connectionState ==
-                                    ConnectionState.done) {
-                                  return AddLoanForm(
-                                    amountFocusNode: _amountFocusNode,
-                                    periodFocusNode: _periodFocusNode,
-                                  );
-                                }
-                                return CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.orangeAccent),
+          child: Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/theme2.png"),
+                      fit: BoxFit.cover,
+                    )),
+              ),
+              SingleChildScrollView(
+                child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 16.0, right: 16.0, bottom: 20.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        FutureBuilder(
+                            future: _initializeFirebase(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return Text('Error Initializing Firebase');
+                              } else if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                return AddLoanForm(
+                                  amountFocusNode: _amountFocusNode,
+                                  periodFocusNode: _periodFocusNode,
                                 );
-                              }),
-                        ],
-                      )),
-                ),
-              ],
-            ),
+                              }
+                              return CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.orangeAccent),
+                              );
+                            }),
+                      ],
+                    )),
+              ),
+            ],
           ),
         ),
       ),

@@ -221,14 +221,26 @@ class _AddOwnAccountFormState extends State<AddOwnAccountForm> {
                     },
                   ),
                   SizedBox(height: 24.0),
-                  const Text(
-                    "Remark",
-                    style: TextStyle(
-                        color: Colors.black45,
-                        fontSize: 19.0,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.bold
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        "Remark",
+                        style: TextStyle(
+                            color: Colors.black45,
+                            fontSize: 19.0,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      Text(
+                        "(Optional)",
+                        style: TextStyle(
+                          color: Colors.black45,
+                          fontSize: 15.0,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 8.0),
                   CustomFormField(
@@ -242,9 +254,6 @@ class _AddOwnAccountFormState extends State<AddOwnAccountForm> {
                     label:'Remark',
                     hint: 'Write the remark',
                     validator: (value) {
-                      if(value.isEmpty){
-                        return 'This remark can not be empty.';
-                      }
                       getDescription = value;
                     },
                   ),

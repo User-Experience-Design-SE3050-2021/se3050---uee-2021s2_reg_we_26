@@ -53,8 +53,8 @@ class _OTPFormState extends State<OTPForm> {
                     focusNode: widget.otpFocusNode,
                     keyboardType: TextInputType.phone,
                     inputAction: TextInputAction.next,
-                    label: 'Contact Number',
-                    hint: 'Enter your contact number',
+                    label: 'OTP',
+                    hint: 'Enter your OTP number',
                     validator: (value) {
                       if (value.isEmpty || value == null) {
                         return 'Please enter your OTP number';

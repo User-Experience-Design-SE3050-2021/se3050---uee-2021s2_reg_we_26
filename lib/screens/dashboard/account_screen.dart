@@ -64,7 +64,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        height: 165.0,
+                        height: 190.0,
                         width: double.infinity,
                         child: Column(
                           children: [
@@ -94,7 +94,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                               BorderRadius.circular(8.0)),
                                       child: Container(
                                         height: 40.0,
-                                        width: 100.0,
+                                        width: 130.0,
                                         child: Padding(
                                           padding: const EdgeInsets.only(
                                               bottom: 8.0, top: 8.0),
@@ -234,9 +234,6 @@ class _AccountScreenState extends State<AccountScreen> {
                             fontWeight: FontWeight.bold,
                             color: Colors.black54,
                           ),
-                        ),
-                        SizedBox(
-                          width: 1.0,
                         ),
                         Text(
                           'Description',

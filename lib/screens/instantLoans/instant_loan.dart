@@ -112,7 +112,7 @@ class LoanMenu extends StatelessWidget {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Colors.black45,
-                    fixedSize: Size(450, 55),
+                    fixedSize: Size(490, 55),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),

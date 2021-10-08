@@ -230,14 +230,26 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
                     },
                   ),
                   SizedBox(height: 24.0),
-                  const Text(
-                    "Description",
-                    style: TextStyle(
-                        color: Colors.black45,
-                        fontSize: 19.0,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.bold
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                       Text(
+                        "Description",
+                        style: TextStyle(
+                            color: Colors.black45,
+                            fontSize: 19.0,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                       Text(
+                        "(Optional)",
+                        style: TextStyle(
+                          color: Colors.black45,
+                          fontSize: 15.0,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 8.0),
                   CustomFormField(
@@ -251,9 +263,6 @@ class _AddBeneficiaryFormState extends State<AddBeneficiaryForm> {
                     label:'Description',
                     hint: 'Write a description',
                     validator: (value) {
-                      if(value.isEmpty){
-                        return 'This description cannot be empty.';
-                      }
                       getDescription = value;
                     },
                   ),

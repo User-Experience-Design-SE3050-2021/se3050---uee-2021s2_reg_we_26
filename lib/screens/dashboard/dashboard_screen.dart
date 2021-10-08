@@ -1,5 +1,8 @@
+import 'package:boc_smart_passbook/screens/billPayments/payment_screen.dart';
 import 'package:boc_smart_passbook/screens/common/settings_screen.dart';
 import 'package:boc_smart_passbook/screens/dashboard/account_screen.dart';
+import 'package:boc_smart_passbook/screens/fund_transfer/menu.dart';
+import 'package:boc_smart_passbook/screens/instantLoans/instant_loan.dart';
 import 'package:boc_smart_passbook/screens/user_auth/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -106,12 +109,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ],
                       ),
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const FundMenu(),
+                          ),
+                        );
                       },
                     ),
                     ListTile(
                       title: Row(
-                        children: [
+                        children: const [
                           Icon(
                             Icons.payments_rounded,
                             color: Colors.black54,
@@ -129,12 +136,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ],
                       ),
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => PaymentScreen(currentBill: ""),
+                        ));
                       },
                     ),
                     ListTile(
                       title: Row(
-                        children: [
+                        children: const [
                           Icon(
                             Icons.credit_card,
                             color: Colors.black54,
@@ -152,7 +161,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ],
                       ),
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const LoanMenu(),
+                          ),
+                        );
                       },
                     ),
                   ],
@@ -178,7 +191,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         );
                       },
                       child: Row(
-                        children: [
+                        children: const [
                           Icon(
                             Icons.logout_rounded,
                             color: Colors.black54,
@@ -206,7 +219,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/bg_common.png"),
               fit: BoxFit.cover,
@@ -214,496 +227,488 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           child: Column(
             children: [
-              Container(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AccountScreen(),
-                      ),
-                    );
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      color: Color.fromRGBO(229, 229, 229, 0.35),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 165.0,
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Savings Account',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18.0,
-                                        ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const AccountScreen(),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: Color.fromRGBO(229, 229, 229, 0.35),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 190.0,
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      'Savings Account',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
                                       ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Card(
-                                        color:
-                                            Color.fromRGBO(229, 229, 229, 0.35),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0)),
-                                        child: Container(
-                                          height: 40.0,
-                                          width: 100.0,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 8.0, top: 8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.circle_rounded,
-                                                  color: Colors.green,
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Card(
+                                      color:
+                                          Color.fromRGBO(229, 229, 229, 0.35),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0)),
+                                      child: Container(
+                                        height: 40.0,
+                                        width: 130.0,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8.0, top: 8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.circle_rounded,
+                                                color: Colors.green,
+                                              ),
+                                              Text(
+                                                'Active',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black54,
+                                                  fontSize: 16.0,
                                                 ),
-                                                Text(
-                                                  'Active',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black54,
-                                                    fontSize: 16.0,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
+                                              )
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Account Number : 241587452360',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0,
                                     ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: const [
+                                Text(
+                                  'Account Number : 241587452360',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0,
                                   ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 40.0,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Available Balance',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 40.0,
+                            ),
+                            Row(
+                              children: const [
+                                Text(
+                                  'Available Balance',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'LKR. 100,000.00',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25.0,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: const [
+                                Text(
+                                  'LKR. 100,000.00',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25.0,
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-              Container(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AccountScreen(),
-                      ),
-                    );
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      color: Color.fromRGBO(229, 229, 229, 0.35),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 165.0,
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Savings Account',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18.0,
-                                        ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const AccountScreen(),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: Color.fromRGBO(229, 229, 229, 0.35),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 190.0,
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Savings Account',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
                                       ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Card(
-                                        color:
-                                            Color.fromRGBO(229, 229, 229, 0.35),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0)),
-                                        child: Container(
-                                          height: 40.0,
-                                          width: 100.0,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 8.0, top: 8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.circle_rounded,
-                                                  color: Colors.green,
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Card(
+                                      color:
+                                          Color.fromRGBO(229, 229, 229, 0.35),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0)),
+                                      child: Container(
+                                        height: 40.0,
+                                        width: 130.0,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8.0, top: 8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.circle_rounded,
+                                                color: Colors.green,
+                                              ),
+                                              Text(
+                                                'Active',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black54,
+                                                  fontSize: 16.0,
                                                 ),
-                                                Text(
-                                                  'Active',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black54,
-                                                    fontSize: 16.0,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
+                                              )
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Account Number : 541287892361',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0,
                                     ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Account Number : 541287892361',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0,
                                   ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 40.0,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Available Balance',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 40.0,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Available Balance',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'LKR. 550,000.00',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25.0,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'LKR. 550,000.00',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25.0,
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-              Container(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AccountScreen(),
-                      ),
-                    );
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      color: Color.fromRGBO(229, 229, 229, 0.35),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 165.0,
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Savings Account',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18.0,
-                                        ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const AccountScreen(),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: Color.fromRGBO(229, 229, 229, 0.35),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 190.0,
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Savings Account',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
                                       ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Card(
-                                        color:
-                                            Color.fromRGBO(229, 229, 229, 0.35),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0)),
-                                        child: Container(
-                                          height: 40.0,
-                                          width: 100.0,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 8.0, top: 8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.circle_rounded,
-                                                  color: Colors.redAccent,
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Card(
+                                      color:
+                                          Color.fromRGBO(229, 229, 229, 0.35),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0)),
+                                      child: Container(
+                                        height: 40.0,
+                                        width: 130.0,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8.0, top: 8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.circle_rounded,
+                                                color: Colors.redAccent,
+                                              ),
+                                              Text(
+                                                'Dormant',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black54,
+                                                  fontSize: 16.0,
                                                 ),
-                                                Text(
-                                                  'Dormant',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black54,
-                                                    fontSize: 16.0,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
+                                              )
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Account Number : 712587452393',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0,
                                     ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Account Number : 712587452393',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0,
                                   ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 40.0,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Available Balance',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 40.0,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Available Balance',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'LKR. 4,000.00',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25.0,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'LKR. 4,000.00',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25.0,
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-              Container(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AccountScreen(),
-                      ),
-                    );
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      color: Color.fromRGBO(229, 229, 229, 0.35),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 165.0,
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Savings Account',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18.0,
-                                        ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const AccountScreen(),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: Color.fromRGBO(229, 229, 229, 0.35),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 190.0,
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Savings Account',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
                                       ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Card(
-                                        color:
-                                            Color.fromRGBO(229, 229, 229, 0.35),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0)),
-                                        child: Container(
-                                          height: 40.0,
-                                          width: 100.0,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 8.0, top: 8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.circle_rounded,
-                                                  color: Colors.green,
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Card(
+                                      color:
+                                          Color.fromRGBO(229, 229, 229, 0.35),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0)),
+                                      child: Container(
+                                        height: 40.0,
+                                        width: 130.0,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8.0, top: 8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.circle_rounded,
+                                                color: Colors.green,
+                                              ),
+                                              Text(
+                                                'Active',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black54,
+                                                  fontSize: 16.0,
                                                 ),
-                                                Text(
-                                                  'Active',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black54,
-                                                    fontSize: 16.0,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
+                                              )
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Account Number : xxxxxxxxxxxxx',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0,
                                     ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Account Number : xxxxxxxxxxxxx',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0,
                                   ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 40.0,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Available Balance',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 40.0,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Available Balance',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'LKR. 100,000.00',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25.0,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'LKR. 100,000.00',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25.0,
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),

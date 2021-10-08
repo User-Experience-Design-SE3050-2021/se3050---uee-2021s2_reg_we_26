@@ -26,40 +26,44 @@ class TransactionList extends StatelessWidget {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    children: [
-                      Text(
-                        date,
-                        style: TextStyle(
-                          fontSize: 16.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
+                  Expanded(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          child: Text(
-                            description,
-                            style: TextStyle(
-                              fontSize: 16.0,
-                            ),
+                        Text(
+                          date,
+                          style: TextStyle(
+                            fontSize: 16.0,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        amount,
-                        style: TextStyle(
-                          fontSize: 16.0,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          description,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "$amount.00",
+                          style: TextStyle(
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               );

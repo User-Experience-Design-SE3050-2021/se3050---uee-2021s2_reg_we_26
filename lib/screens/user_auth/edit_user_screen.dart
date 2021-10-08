@@ -38,25 +38,37 @@ class _EditUserScreenState extends State<EditUserScreen> {
             ),
           ),
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 20.0,
-              left: 16.0,
-              right: 16.0,
-              bottom: 20.0,
+        body: Stack(
+          children: [
+            Container(
+              height: double.infinity,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/theme2.png"),
+                    fit: BoxFit.cover,
+                  )),
             ),
-            child: Card(
-              color: Color.fromRGBO(196, 196, 196, 0.35),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0)),
-              child: EditUserForm(
-                username: _userNode,
-                nic: _nicNode,
-                contact: _contactNode,
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 20.0,
+                  left: 16.0,
+                  right: 16.0,
+                  bottom: 20.0,
+                ),
+                child: Card(
+                  color: Color.fromRGBO(229, 229, 229, 0.7),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)),
+                  child: EditUserForm(
+                    username: _userNode,
+                    nic: _nicNode,
+                    contact: _contactNode,
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
