@@ -59,7 +59,9 @@ class _LoginFormState extends State<LoginForm> {
                     label: 'Enter User NIC',
                     hint: 'Enter your NIC number',
                     validator: (value) {
-                      Validator.validateField(value: value);
+                      if (value.isEmpty || value == null) {
+                        return 'Please enter username';
+                      }
                       getUserName = value;
                     },
                   ),
@@ -74,7 +76,9 @@ class _LoginFormState extends State<LoginForm> {
                     label: 'Password',
                     hint: 'Enter your Password',
                     validator: (value) {
-                      Validator.validateField(value: value);
+                      if (value.isEmpty || value == null) {
+                        return 'Please enter username';
+                      }
                       getPwd = value;
                     },
                   ),

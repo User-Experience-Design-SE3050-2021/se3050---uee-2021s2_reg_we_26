@@ -19,31 +19,66 @@ class TransactionList extends StatelessWidget {
             itemBuilder: (context, index){
               var transactionInfo = snapshot.data!.docs[index].data() as Map<String, dynamic>;
               String docID = snapshot.data!.docs[index].id;
-              String title = transactionInfo['amount'];
-              String description = transactionInfo['date'];
+              String date = transactionInfo['date'];
+              String amount = transactionInfo['amount'];
+              String description = transactionInfo['description'];
 
-              return Ink(
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        date,
+                      ),
+                    ],
                   ),
-                  onTap: () {},
-                  title: Text(
-                    title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  Column(
+                    children: [
+                      Text(
+                        description,
+                      ),
+                    ],
                   ),
-                  subtitle: Text(
-                    description,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
+                  Column(
+                    children: [
+                      Text(
+                        amount,
+                      ),
+                    ],
+                  )
+                ],
               );
+
+
+
+
+              // return Row(
+              //   children: [
+              //     Ink(
+              //       // decoration: BoxDecoration(
+              //       //   color: Colors.blueGrey,
+              //       //   borderRadius: BorderRadius.circular(8.0),
+              //       // ),
+              //       child: ListTile(
+              //         // shape: RoundedRectangleBorder(
+              //         //   borderRadius: BorderRadius.circular(8.0),
+              //         // ),
+              //         // onTap: () {},
+              //         title: Text(
+              //           date,
+              //           maxLines: 1,
+              //           overflow: TextOverflow.ellipsis,
+              //         ),
+              //         subtitle: Text(
+              //           description,
+              //           maxLines: 1,
+              //           overflow: TextOverflow.ellipsis,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // );
             },
           );
         }

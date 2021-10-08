@@ -37,44 +37,20 @@ class Database{
 
     await documentReference.set(data).whenComplete(() => print("Successfully registered")).catchError((e) => print(e));
   }
-
-  // static Future<void> readUserAvailability({
-  //   required String nic,
-  //   required String password,
-  // }) async {
-  //   String user;
-  //   String pwd;
-  //   String docId;
-  //
-  //   var querySnapshot = QuerySnapshot;
-  //
-  //   FirebaseFirestore.instance
-  //   .collection('users')
-  //   .where('nic', isEqualTo: nic)
-  //   .where('password', isEqualTo: password)
-  //   .get().then((querySnapshot){
-  //     querySnapshot.docs.forEach((result) {
-  //       print(result.data());
-  //     });
-  //   });
-  //
-  //   // CollectionReference userCollection = _mainCollection.doc('')
-  // }
-
+  
   static Future<void> updateUser({
     required String username,
     required String nic,
     required String contact,
-    required String password,
     required String docId,
   }) async {
-    DocumentReference documentReference = _mainCollection.doc('1').collection('users').doc(docId);
+    DocumentReference documentReference = _mainCollection.doc('user').collection('users').doc(docId);
 
     Map<String, dynamic> data = <String, dynamic>{
       "username": username,
       "nic": nic,
       "contact": contact,
-      "password": password,
+      "password": '12345',
     };
 
     await documentReference.set(data).whenComplete(() => print("User data updated")).catchError((e) => print(e));
@@ -93,4 +69,5 @@ class Database{
 
     await documentReference.delete().whenComplete(() =>  print("Successfully Deactivated")).catchError((e) => print(e));
   }
+
 }
