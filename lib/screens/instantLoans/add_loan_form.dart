@@ -361,7 +361,7 @@ class _AddLoanFormState extends State<AddLoanForm> {
                               ),
                             ]),
                       ])))),
-      const SizedBox(height: 40),
+      const SizedBox(height: 5),
       Padding(
           padding: const EdgeInsets.only(
               left: 8.0, right: 8.0, top: 40.0, bottom: 40.0),
