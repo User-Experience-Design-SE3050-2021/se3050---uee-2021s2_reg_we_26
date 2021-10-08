@@ -33,54 +33,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
       },
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/background.png"),
-              fit: BoxFit.cover,
+        body: SafeArea(
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/background.png"),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-              right: 16.0,
-              bottom: 20.0,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                SizedBox(
-                  height: 30.0,
-                ),
-                Expanded(
-                  child: Column(
-                    // mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Flexible(
-                          child: Image.asset(
-                        'assets/logo.png',
-                        height: 100,
-                      )),
-                    ],
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 16.0,
+                right: 16.0,
+                bottom: 20.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: 30.0,
                   ),
-                ),
-                Card(
-                  color: Color.fromRGBO(196, 196, 196, 0.35),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0)),
-                  child: FutureBuilder(
+                  Container(
+                      child: Image.asset(
+                    'assets/logo.png',
+                    height: 100,
+                  )),
+                  SizedBox(height: 10.0,),
+                  FutureBuilder(
                       future: _initializeFirebase(),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
                           return Text('Error Initializing Firebase');
                         } else if (snapshot.connectionState ==
                             ConnectionState.done) {
-                          return RegisterForm(
-                            usernameFocusNode: _usernameFocusNode,
-                            nicFocusNode: _nicFocusNode,
-                            contactFocusNode: _contactNumberFocusNode,
-                            pwdFocusNode: _pwdFocusNode,
+                          return Expanded(
+                            child: Card(
+                              color: Color.fromRGBO(196, 196, 196, 0.35),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)
+                              ),
+                              child: RegisterForm(
+                                usernameFocusNode: _usernameFocusNode,
+                                nicFocusNode: _nicFocusNode,
+                                contactFocusNode: _contactNumberFocusNode,
+                                pwdFocusNode: _pwdFocusNode,
+                              ),
+                            ),
                           );
                         }
                         return const CircularProgressIndicator(
@@ -88,26 +86,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Color.fromRGBO(253, 198, 13, 1)),
                         );
                       }),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Already have an account? Sign In here",
+                      style: TextStyle(
+                        fontSize: 19.0,
                       ),
-                    );
-                  },
-                  child: Text(
-                    "Already have an account? Sign In here",
-                    style: TextStyle(
-                      fontSize: 19.0,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
