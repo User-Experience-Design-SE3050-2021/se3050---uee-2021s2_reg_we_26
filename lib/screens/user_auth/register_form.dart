@@ -43,10 +43,11 @@ class _RegisterFormState extends State<RegisterForm> {
       child: Form(
         key: _LoginInFormKey,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  left: 8.0, right: 8.0, bottom: 2.0, top: 5.0),
+                  left: 8.0, right: 8.0, bottom: 2.0, top: 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -57,7 +58,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 15),
                   CustomAuthFormField(
                     initialValue: "",
                     controller: _usernameController,
@@ -159,6 +160,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 ],
               ),
             ),
+            SizedBox(height: 20.0,),
             _isProcessing
                 ? Padding(
                     padding: const EdgeInsets.all(16.0),
