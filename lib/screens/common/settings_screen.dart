@@ -49,6 +49,12 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
       ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/bg_common.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
