@@ -1,6 +1,5 @@
 import 'package:boc_smart_passbook/screens/common/reset_passcode_screen.dart';
 import 'package:boc_smart_passbook/screens/user_auth/edit_user_screen.dart';
-import 'package:boc_smart_passbook/screens/user_auth/register_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +37,7 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black54),
         elevation: 0,
         backgroundColor: const Color.fromRGBO(253,198,13,1),
         title: const Text(
@@ -81,11 +81,7 @@ class _SettingScreenState extends State<SettingScreen> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const EditUserScreen(
-                        // username: "username",
-                        // nic: "nic",
-                        // contact: "contact",
-                    ),
+                    builder: (context) => const EditUserScreen(),
                   ),
                 );
               },

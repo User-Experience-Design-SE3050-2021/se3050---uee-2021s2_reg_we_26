@@ -2,19 +2,7 @@ import 'package:boc_smart_passbook/screens/common/reset_passcode_form.dart';
 import 'package:flutter/material.dart';
 
 class PasscodeScreen extends StatefulWidget {
-  // final String username;
-  // final String nic;
-  // final String contact;
-  // final String password;
-  //
-  // const EditUserScreen({
-  //   required this.username,
-  //   required this.nic,
-  //   required this.contact,
-  //   required this.password,
-  // });
   const PasscodeScreen({Key? key}) : super(key: key);
-
 
   @override
   _PasscodeScreenState createState() => _PasscodeScreenState();
@@ -32,8 +20,8 @@ class _PasscodeScreenState extends State<PasscodeScreen> {
         _pwdNode.unfocus();
       },
       child: Scaffold(
-        // backgroundColor: const Color.fromRGBO(253,198,13,1),
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black54),
           elevation: 0,
           backgroundColor: const Color.fromRGBO(253,198,13,1),
           title: const Text(

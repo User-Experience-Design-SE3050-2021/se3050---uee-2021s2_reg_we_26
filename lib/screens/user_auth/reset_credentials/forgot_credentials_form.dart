@@ -1,74 +1,37 @@
-import 'package:boc_smart_passbook/screens/dashboard/dashboard_screen.dart';
-import 'package:boc_smart_passbook/validators/user_database.dart';
-import 'package:boc_smart_passbook/validators/user_validator.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:boc_smart_passbook/screens/user_auth/reset_credentials/otp_screen.dart';
 import 'package:flutter/material.dart';
-import 'custom_auth_form_field.dart';
 
-class LoginForm extends StatefulWidget {
+import '../custom_auth_form_field.dart';
+
+class ForgotCredentialsForm extends StatefulWidget {
   final FocusNode nicFocusNode;
-  final FocusNode pwdFocusNode;
+  final FocusNode contactFocusNode;
 
-  const LoginForm({
+  const ForgotCredentialsForm({
     Key? key,
     required this.nicFocusNode,
-    required this.pwdFocusNode,
+    required this.contactFocusNode,
   }) : super(key: key);
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  _ForgotCredentialsFormState createState() => _ForgotCredentialsFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
-  @override
-  void initState() {
-    getUserNIC();
-    getUserPwd();
-  }
-
-  String nic = '';
-  String pwd = '';
-
-  getUserNIC() async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('bank')
-        .doc('user')
-        .collection('users')
-        .where('nic', isEqualTo: '991282322V')
-        .get();
-
-    setState(() {
-      nic = querySnapshot.docs.map((doc) => doc.get('nic')).toList()[0];
-    });
-  }
-
-  getUserPwd() async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('bank')
-        .doc('user')
-        .collection('users')
-        .where('nic', isEqualTo: '991282322V')
-        .get();
-
-    setState(() {
-      pwd = querySnapshot.docs.map((doc) => doc.get('password')).toList()[0];
-    });
-  }
-
+class _ForgotCredentialsFormState extends State<ForgotCredentialsForm> {
   final TextEditingController _nicController = TextEditingController();
-  final TextEditingController _pwdController = TextEditingController();
+  final TextEditingController _contactController = TextEditingController();
 
-  final _LoginInFormKey = GlobalKey<FormState>();
-
-  String getUserName = "";
-  String getPwd = "";
+  String getNIC = '';
+  String getContact = '';
   bool _isProcessing = false;
+
+  final _ForgotFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Form(
-        key: _LoginInFormKey,
+        key: _ForgotFormKey,
         child: Column(
           children: [
             Padding(
@@ -78,7 +41,7 @@ class _LoginFormState extends State<LoginForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Sign In',
+                    'Reset Credentials',
                     style: TextStyle(
                       fontSize: 36.0,
                       fontWeight: FontWeight.bold,
@@ -105,24 +68,28 @@ class _LoginFormState extends State<LoginForm> {
                       } else if (value.length > 12) {
                         return 'Maximum characters for NIC number is 12';
                       }
-                      getUserName = value;
+                      getNIC = value;
                     },
                   ),
                   SizedBox(height: 10),
                   CustomAuthFormField(
                     isObscure: true,
                     initialValue: "",
-                    controller: _pwdController,
-                    focusNode: widget.pwdFocusNode,
-                    keyboardType: TextInputType.text,
+                    controller: _contactController,
+                    focusNode: widget.contactFocusNode,
+                    keyboardType: TextInputType.phone,
                     inputAction: TextInputAction.next,
-                    label: 'Password',
-                    hint: 'Enter your Password',
+                    label: 'Contact Number',
+                    hint: 'Enter your contact number',
                     validator: (value) {
                       if (value.isEmpty || value == null) {
-                        return 'Please enter username';
+                        return 'Please enter your contact number';
+                      } else if (value.length < 10) {
+                        return 'Please enter a valid contact number';
+                      } else if (value.length > 12) {
+                        return 'Please enter a locally used mobile number';
                       }
-                      getPwd = value;
+                      getContact = value;
                     },
                   ),
                 ],
@@ -153,44 +120,24 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                         onPressed: () async {
                           widget.nicFocusNode.unfocus();
-                          widget.pwdFocusNode.unfocus();
+                          widget.contactFocusNode.unfocus();
 
-                          if (_LoginInFormKey.currentState!.validate()) {
-                            setState(() {
-                              _isProcessing = true;
-                            });
-
-                            if (getUserName == nic) {
-                              if (getPwd == pwd) {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const DashboardScreen(),
-                                  ),
-                                );
-                              } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: Text("Incorrect Password"),
-                                ));
-                              }
-                            } else {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text(
-                                    "Incorrect Credentials, try again later"),
-                              ));
-                            }
-                            setState(() {
-                              _isProcessing = false;
-                            });
+                          if (_ForgotFormKey.currentState!.validate()) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("OTP sent to "+ getContact),
+                            ));
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const OTPScreen(),
+                              ),
+                            );
                           }
                         },
                         child: Padding(
                           padding: EdgeInsets.only(
                               top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
                           child: Text(
-                            'Sign In',
+                            'Send OTP',
                             style: TextStyle(
                               fontSize: 24,
                               color: Colors.black,

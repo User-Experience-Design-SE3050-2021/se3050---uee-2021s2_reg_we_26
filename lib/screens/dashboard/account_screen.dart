@@ -13,6 +13,7 @@ class _AccountScreenState extends State<AccountScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black54),
         elevation: 0,
         backgroundColor: const Color.fromRGBO(253, 198, 13, 1),
         title: const Text(
@@ -23,10 +24,11 @@ class _AccountScreenState extends State<AccountScreen> {
           ),
         ),
       ),
-
-      body: Padding(
-        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 20.0),
-        child: TransactionList(),
+      body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TransactionList(),
+          )
       ),
     );
   }

@@ -127,10 +127,12 @@ class _RegisterFormState extends State<RegisterForm> {
                     keyboardType: TextInputType.text,
                     inputAction: TextInputAction.next,
                     label: 'Password',
-                    hint: 'Enter your new Password',
+                    hint: 'Enter your Password',
                     validator: (value) {
                       if (value.isEmpty || value == null) {
                         return 'Please enter a password';
+                      } else if (value.length < 5) {
+                        return 'Passcode cannot be less than 5 characters';
                       }
                       getPwd = value;
                     },
@@ -144,7 +146,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     keyboardType: TextInputType.text,
                     inputAction: TextInputAction.next,
                     label: 'Re-Type Password',
-                    hint: 'Enter your new Password again',
+                    hint: 'Enter your Password again',
                     validator: (value) {
                       if (value.isEmpty || value == null) {
                         return 'Please re-type your password';

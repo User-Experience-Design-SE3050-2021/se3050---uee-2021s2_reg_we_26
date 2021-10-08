@@ -12,7 +12,7 @@ class Database{
     required String contact,
     required String password,
   }) async {
-    DocumentReference documentReference = _mainCollection.doc('user').collection('users').doc();
+    DocumentReference documentReference = _mainCollection.doc('user').collection('users').doc('1');
 
     Map<String, dynamic> data = <String, dynamic>{
       "username": username,
@@ -37,20 +37,33 @@ class Database{
 
     await documentReference.set(data).whenComplete(() => print("Successfully registered")).catchError((e) => print(e));
   }
-  
+
   static Future<void> updateUser({
     required String username,
     required String nic,
     required String contact,
     required String docId,
   }) async {
-    DocumentReference documentReference = _mainCollection.doc('user').collection('users').doc(docId);
+    DocumentReference documentReference = _mainCollection.doc('user').collection('users').doc('1');
 
     Map<String, dynamic> data = <String, dynamic>{
       "username": username,
       "nic": nic,
       "contact": contact,
       "password": '12345',
+    };
+
+    await documentReference.set(data).whenComplete(() => print("User data updated")).catchError((e) => print(e));
+  }
+
+  static Future<void> updatePasscode({
+    required String passcode,
+    required String docId,
+  }) async {
+    DocumentReference documentReference = _mainCollection.doc('1').collection('passcode').doc(docId);
+
+    Map<String, dynamic> data = <String, dynamic>{
+      "code": passcode,
     };
 
     await documentReference.set(data).whenComplete(() => print("User data updated")).catchError((e) => print(e));

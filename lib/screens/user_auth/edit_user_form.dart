@@ -103,7 +103,7 @@ class _EditUserFormState extends State<EditUserForm> {
                   ),
                   SizedBox(height: 30.0),
                   TextFormField(
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Colors.black),
                     enabled: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -149,7 +149,7 @@ class _EditUserFormState extends State<EditUserForm> {
                   ),
                   SizedBox(height: 25),
                   TextFormField(
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Colors.black),
                     enabled: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -202,7 +202,7 @@ class _EditUserFormState extends State<EditUserForm> {
                   ),
                   SizedBox(height: 25),
                   TextFormField(
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Colors.black),
                     enabled: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {

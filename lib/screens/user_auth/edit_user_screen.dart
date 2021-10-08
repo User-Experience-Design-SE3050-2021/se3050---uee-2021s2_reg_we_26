@@ -3,21 +3,8 @@ import 'package:flutter/material.dart';
 import 'edit_user_form.dart';
 
 class EditUserScreen extends StatefulWidget {
-  // final String username;
-  // final String nic;
-  // final String contact;
-  // final String password;
-  //
-  // const EditUserScreen({
-  //   required this.username,
-  //   required this.nic,
-  //   required this.contact,
-  //   required this.password,
-  // });
   const EditUserScreen({Key? key}) : super(key: key);
-
-
-
+  
   @override
   _EditUserScreenState createState() => _EditUserScreenState();
 }
@@ -40,6 +27,7 @@ class _EditUserScreenState extends State<EditUserScreen> {
       child: Scaffold(
         // backgroundColor: const Color.fromRGBO(253,198,13,1),
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black54),
           elevation: 0,
           backgroundColor: const Color.fromRGBO(253,198,13,1),
           title: const Text(

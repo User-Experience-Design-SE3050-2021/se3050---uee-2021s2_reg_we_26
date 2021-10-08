@@ -1,4 +1,5 @@
 import 'package:boc_smart_passbook/screens/user_auth/register_screen.dart';
+import 'package:boc_smart_passbook/screens/user_auth/reset_credentials/forgot_credentials_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'login_form.dart';
@@ -81,10 +82,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(height: 20,),
-                  Text(
-                    "Problems in Login? Tap here",
-                    style: TextStyle(
-                      fontSize: 19.0,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const ForgotCredentialsScreen(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Problems in Login? Tap here",
+                      style: TextStyle(
+                        fontSize: 19.0,
+                      ),
                     ),
                   ),
                   SizedBox(height: 20,),

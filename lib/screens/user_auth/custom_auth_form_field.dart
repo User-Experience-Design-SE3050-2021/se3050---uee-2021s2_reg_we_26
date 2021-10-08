@@ -39,7 +39,7 @@ class CustomAuthFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return TextFormField(
-      style: TextStyle(color: Colors.grey),
+      style: TextStyle(color: Colors.black),
       initialValue: _initialValue,
       maxLines: maxLines,
       keyboardType: _keyboardtype,

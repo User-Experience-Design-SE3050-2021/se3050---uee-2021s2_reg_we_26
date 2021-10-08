@@ -49,36 +49,6 @@ class TransactionList extends StatelessWidget {
                   )
                 ],
               );
-
-
-
-
-              // return Row(
-              //   children: [
-              //     Ink(
-              //       // decoration: BoxDecoration(
-              //       //   color: Colors.blueGrey,
-              //       //   borderRadius: BorderRadius.circular(8.0),
-              //       // ),
-              //       child: ListTile(
-              //         // shape: RoundedRectangleBorder(
-              //         //   borderRadius: BorderRadius.circular(8.0),
-              //         // ),
-              //         // onTap: () {},
-              //         title: Text(
-              //           date,
-              //           maxLines: 1,
-              //           overflow: TextOverflow.ellipsis,
-              //         ),
-              //         subtitle: Text(
-              //           description,
-              //           maxLines: 1,
-              //           overflow: TextOverflow.ellipsis,
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // );
             },
           );
         }
