@@ -30,22 +30,34 @@ class TransactionList extends StatelessWidget {
                     children: [
                       Text(
                         date,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        child: Text(
-                          description,
+                        style: TextStyle(
+                          fontSize: 16.0,
                         ),
                       ),
                     ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Text(
+                            description,
+                            style: TextStyle(
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Column(
                     children: [
                       Text(
                         amount,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                        ),
                       ),
                     ],
                   )

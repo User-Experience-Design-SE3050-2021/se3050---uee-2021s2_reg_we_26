@@ -1,3 +1,4 @@
+import 'package:boc_smart_passbook/screens/common/settings_screen.dart';
 import 'package:boc_smart_passbook/screens/dashboard/transaction_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,23 @@ class _AccountScreenState extends State<AccountScreen> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black54),
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => SettingScreen(),
+                    ),
+                  );
+                },
+                child: Icon(
+                  Icons.settings,
+                  size: 26.0,
+                ),
+              )),
+        ],
         elevation: 0,
         backgroundColor: const Color.fromRGBO(253, 198, 13, 1),
         title: const Text(
@@ -143,7 +161,54 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
               ),
             ),
-
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: Card(
+                color: Color.fromRGBO(253, 198, 13, 1),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 30.0,
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Recent Transactions',
+                          style: TextStyle(
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54,
+                          ),
+                        ),
+                        PopupMenuButton(
+                            padding: EdgeInsets.only(bottom: 0.0),
+                            icon: Icon(
+                              Icons.more_vert,
+                              color: Colors.black54,
+                            ),
+                            itemBuilder: (context) => [
+                                  PopupMenuItem(
+                                    child: Text('Last Week'),
+                                  ),
+                                  PopupMenuItem(
+                                    child: Text('1 Month'),
+                                  ),
+                                  PopupMenuItem(
+                                    child: Text('2 Month'),
+                                  ),
+                                  PopupMenuItem(
+                                    child: Text('3 Month'),
+                                  ),
+                                ])
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
               child: Card(
@@ -158,15 +223,16 @@ class _AccountScreenState extends State<AccountScreen> {
                       Text(
                         'Date',
                         style: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.black54,
                         ),
                       ),
+                      SizedBox(width: 1.0,),
                       Text(
                         'Description',
                         style: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.black54,
                         ),
@@ -174,7 +240,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       Text(
                         'Amount',
                         style: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.black54,
                         ),

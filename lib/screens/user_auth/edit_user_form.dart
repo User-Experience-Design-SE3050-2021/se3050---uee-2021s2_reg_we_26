@@ -43,7 +43,7 @@ class _EditUserFormState extends State<EditUserForm> {
         .collection('bank')
         .doc('user')
         .collection('users')
-        .where('nic', isEqualTo: '951242300V')
+        .where('nic', isEqualTo: '991282322V')
         .get();
 
     setState(() {
@@ -58,7 +58,7 @@ class _EditUserFormState extends State<EditUserForm> {
         .collection('bank')
         .doc('user')
         .collection('users')
-        .where('nic', isEqualTo: '951242300V')
+        .where('nic', isEqualTo: '991282322V')
         .get();
 
     setState(() {
@@ -72,7 +72,7 @@ class _EditUserFormState extends State<EditUserForm> {
         .collection('bank')
         .doc('user')
         .collection('users')
-        .where('nic', isEqualTo: '951242300V')
+        .where('nic', isEqualTo: '991282322V')
         .get();
 
     setState(() {
@@ -295,21 +295,28 @@ class _EditUserFormState extends State<EditUserForm> {
                                 widget.nic.unfocus();
                                 widget.contact.unfocus();
 
-                                if(_EditFormKey.currentState!.validate()) {
-                                  setState((){
+                                if (_EditFormKey.currentState!.validate()) {
+                                  setState(() {
                                     _isProcessing = true;
                                   });
 
                                   await Database.updateUser(
-                                      username: getUserName,
-                                      nic: getNIC,
-                                      contact: getContact,
-                                      docId: 'kCR18BtjqBKvFxNKGBeM',
+                                    username: getUserName,
+                                    nic: getNIC,
+                                    contact: getContact,
+                                    docId: 'kCR18BtjqBKvFxNKGBeM',
                                   );
 
-                                  setState((){
+                                  setState(() {
                                     _isProcessing = false;
                                   });
+
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text("Changes Saved!"),
+                                    backgroundColor:
+                                        Color.fromRGBO(253, 198, 13, 1),
+                                  ));
 
                                   Navigator.of(context).pop();
                                 }

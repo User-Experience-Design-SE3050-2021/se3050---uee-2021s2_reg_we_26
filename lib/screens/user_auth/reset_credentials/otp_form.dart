@@ -108,6 +108,8 @@ class _OTPFormState extends State<OTPForm> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
                                     content: Text("Incorrect OTP"),
+                                    backgroundColor:
+                                        Color.fromRGBO(253, 198, 13, 1),
                                   ));
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
@@ -162,7 +164,7 @@ class _OTPFormState extends State<OTPForm> {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                  const ForgotCredentialsScreen(),
+                                      const ForgotCredentialsScreen(),
                                 ),
                               );
                             },

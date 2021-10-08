@@ -124,7 +124,8 @@ class _ForgotCredentialsFormState extends State<ForgotCredentialsForm> {
 
                           if (_ForgotFormKey.currentState!.validate()) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("OTP sent to "+ getContact),
+                              content: Text("OTP sent to " + getContact),
+                              backgroundColor: Color.fromRGBO(253, 198, 13, 1),
                             ));
                             Navigator.of(context).push(
                               MaterialPageRoute(

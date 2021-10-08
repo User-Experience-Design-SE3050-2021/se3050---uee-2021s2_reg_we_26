@@ -203,6 +203,8 @@ class _ResetPasscodeFormState extends State<ResetPasscodeForm> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
                                     content: Text("Passcode Changed"),
+                                    backgroundColor:
+                                        Color.fromRGBO(253, 198, 13, 1),
                                   ));
 
                                   Navigator.of(context).push(

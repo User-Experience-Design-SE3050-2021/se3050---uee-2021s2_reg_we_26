@@ -172,6 +172,8 @@ class _LoginFormState extends State<LoginForm> {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
                                   content: Text("Incorrect Password"),
+                                  backgroundColor:
+                                      Color.fromRGBO(253, 198, 13, 1),
                                 ));
                               }
                             } else {
@@ -179,6 +181,8 @@ class _LoginFormState extends State<LoginForm> {
                                   .showSnackBar(SnackBar(
                                 content: Text(
                                     "Incorrect Credentials, try again later"),
+                                backgroundColor:
+                                    Color.fromRGBO(253, 198, 13, 1),
                               ));
                             }
                             setState(() {

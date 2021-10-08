@@ -4,7 +4,7 @@ import 'edit_user_form.dart';
 
 class EditUserScreen extends StatefulWidget {
   const EditUserScreen({Key? key}) : super(key: key);
-  
+
   @override
   _EditUserScreenState createState() => _EditUserScreenState();
 }
@@ -18,7 +18,7 @@ class _EditUserScreenState extends State<EditUserScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         _userNode.unfocus();
         _nicNode.unfocus();
         _contactNode.unfocus();
@@ -29,7 +29,7 @@ class _EditUserScreenState extends State<EditUserScreen> {
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black54),
           elevation: 0,
-          backgroundColor: const Color.fromRGBO(253,198,13,1),
+          backgroundColor: const Color.fromRGBO(253, 198, 13, 1),
           title: const Text(
             'Edit Profile',
             style: TextStyle(
@@ -49,8 +49,7 @@ class _EditUserScreenState extends State<EditUserScreen> {
             child: Card(
               color: Color.fromRGBO(196, 196, 196, 0.35),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0)
-              ),
+                  borderRadius: BorderRadius.circular(8.0)),
               child: EditUserForm(
                 username: _userNode,
                 nic: _nicNode,
