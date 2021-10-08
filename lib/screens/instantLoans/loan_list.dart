@@ -2,7 +2,6 @@ import 'package:boc_smart_passbook/validators/loan_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'loan_screen.dart';
 
 class LoanList extends StatelessWidget {
   const LoanList({Key? key}) : super(key: key);
@@ -11,16 +10,17 @@ class LoanList extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: LoanDatabase.readLoans(),
-      builder: (context, snapshot){
-        if(snapshot.hasError){
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
           return Text("Something went wrong");
-        }else if(snapshot.hasData || snapshot.data != null){
+        } else if (snapshot.hasData || snapshot.data != null) {
           return ListView.separated(
-            padding: const EdgeInsets.only(top:20.0),
+            padding: const EdgeInsets.only(top: 20.0),
             separatorBuilder: (context, index) => SizedBox(height: 16.0),
             itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index){
-              var noteInfo = snapshot.data!.docs[index].data() as Map<String, dynamic>;
+            itemBuilder: (context, index) {
+              var noteInfo =
+                  snapshot.data!.docs[index].data() as Map<String, dynamic>;
               String docId = snapshot.data!.docs[index].id;
               String amount = noteInfo['loanAmount'];
               String period = noteInfo['loanPeriod'];
@@ -36,9 +36,9 @@ class LoanList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   title: Padding(
-                    padding: const EdgeInsets.only(top:10.0,bottom: 25.0),
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 25.0),
                     child: Text(
-                      "Period : "+period+" Months",
+                      "Period : " + period + " Months",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -49,16 +49,14 @@ class LoanList extends StatelessWidget {
                   subtitle: Text(
                     "Amount(Rs.)  :  $amount",
                     maxLines: 1,
-                    overflow:  TextOverflow.ellipsis,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 17.0,
                     ),
                   ),
                 ),
               );
-
             },
-
           );
         }
         return Center(

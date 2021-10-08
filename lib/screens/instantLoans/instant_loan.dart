@@ -29,34 +29,25 @@ class LoanMenu extends StatelessWidget {
           fit: BoxFit.cover,
         )),
         child: Center(
-
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-
               children: [
                 SizedBox(height: 40.0),
-
                 ListTile(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
-
                   ),
                   title: Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(253, 198, 13, 1),
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(10)
-                          )
-
-                      ),
-
-                     child: Padding(
-
-                      padding: const EdgeInsets.only(top: 10.0, bottom: 40.0, left: 15, right: 15),
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(253, 198, 13, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, bottom: 40.0, left: 15, right: 15),
                       child: Text(
                         "            Get the money you need,        "
                         "Whenever you need it!!!!!!!!,  Enjoy the most easiest and fastest loans "
@@ -80,7 +71,6 @@ class LoanMenu extends StatelessWidget {
                       height: 1600,
                     )),
                 FlatButton(
-
                     textColor: Colors.white,
                     height: 50.0,
                     color: Colors.amber,
@@ -126,7 +116,6 @@ class LoanMenu extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
