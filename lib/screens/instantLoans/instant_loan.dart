@@ -1,8 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'add_loan_screen.dart';
 import 'loan_screen.dart';
 
@@ -83,14 +81,6 @@ class LoanMenu extends StatelessWidget {
                     textColor: Colors.white,
                     height: 50.0,
                     color: Colors.amber,
-                    // style: ButtonStyle(
-                    //   backgroundColor: MaterialStateProperty.all(Colors.black12),
-                    //   shape: MaterialStateProperty.all(
-                    //       RoundedRectangleBorder(
-                    //         borderRadius: BorderRadius.circular(10),
-                    //       )
-                    //   ),
-                    // ),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     onPressed: () {

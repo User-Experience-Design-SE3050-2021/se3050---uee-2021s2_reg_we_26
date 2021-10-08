@@ -88,12 +88,3 @@ class _LoanScreenState extends State<LoanScreen> {
   }
 }
 
-//       body: SafeArea(
-//         child: Padding(
-//           padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 20.0),
-//           child: LoanList(),
-//         ),
-//       ),
-//     );
-//   }
-// }

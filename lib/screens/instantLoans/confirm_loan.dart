@@ -5,20 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class LoanConfirmScreen extends StatefulWidget {
-  //const LoanConfirmScreen({Key? key}) : super(key: key);
+
   final String amount;
   final String period;
-  final String emi;
+  final String monthlyemi;
   final String totalInterest;
   final String totalPayment;
+  final String totalPaymentDouble;
 
 
   const LoanConfirmScreen({
     required this.amount,
     required this.period,
-    required this.emi,
+    required this.monthlyemi,
     required this.totalInterest,
     required this.totalPayment,
+    required this.totalPaymentDouble,
   });
 
 
@@ -30,6 +32,8 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
 
   bool _isProcessing = false;
   bool isChecked = false;
+
+
 
   late final FocusNode chekFocusNode;
 
@@ -54,7 +58,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            title: const Text('Created Loan Successfully',style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black45),),
+            title: const Text('Created Loan Successfully',style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black),),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
@@ -139,7 +143,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                     widget.totalPayment,
+                                     widget.amount,
                                       style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500
@@ -157,7 +161,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Loan Period     (In Months)',
+                                      'Loan Period',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600
@@ -169,7 +173,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      widget.period,
+                                      widget.period+' Months',
                                       style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500
@@ -199,7 +203,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      '2%',
+                                      '12%',
                                       style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500
@@ -217,7 +221,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Monthly EMI',
+                                      'Monthly EMI (Rs.)',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600
@@ -229,7 +233,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      widget.emi,
+                                      widget.monthlyemi,
                                       style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500
@@ -247,7 +251,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Total Payment',
+                                      'Total Payment (Rs.)',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600
@@ -259,7 +263,7 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      widget.totalPayment,
+                                      widget.totalPaymentDouble,
                                       style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500
@@ -321,14 +325,19 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                     },
                   ),
                   const Expanded(
-                    child: Text(
-                      "I here by confirm that I am agree to continue my payments according to the above conditions.",
-                      style: TextStyle(
-                          color: Colors.black45,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left:5.0, right: 20.0),
+                      child: Text(
+                        "I here by confirm that I am agree to continue my payments according to the above conditions.",
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
                           fontSize: 14.0,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
+
                   ),
                 ],
               ),
@@ -388,23 +397,13 @@ class _LoanConfirmScreenState extends State<LoanConfirmScreen> {
                                 ),
                               ),
                               onPressed: () async {
-                                // setState(() {
-                                //   _isProcessing = true;
-                                // });
-                                // await LoanDatabase.addLoan(loanAmount: widget.amount, loanPeriod: widget.period);
-                                // setState(() {
-                                //   _isProcessing = false;
-                                // });
-                               // _showMyDialog();
                                 if(isChecked == true) {
                                   setState(() {
                                     _isProcessing = true;
                                   });
-                                  //   await BillPaymentDatabase.payBill(amount: getAmount,description:getBill);
                                   setState(() {
                                     _isProcessing = false;
                                   });
-                                  //Navigator.of(context).pop();
                                   await LoanDatabase.addLoan(loanAmount: widget.amount, loanPeriod: widget.period);
                                   _showMyDialog();
                                 }

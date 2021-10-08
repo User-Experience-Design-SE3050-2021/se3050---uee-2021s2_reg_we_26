@@ -3,6 +3,7 @@ import 'package:boc_smart_passbook/validators/loan_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../custom_form_field.dart';
+import 'dart:math';
 
 class AddLoanForm extends StatefulWidget {
 
@@ -30,7 +31,9 @@ class _AddLoanFormState extends State<AddLoanForm> {
 
   String getAmount = "";
   var getPeriod;
-  var emi=0.00,totalInterest=0.00,totalPayment=0.00;
+  var totalInterest=0.00,totalPayment=0.00;
+  double emi=0.00;
+  double monthlyemi=0.00, totalInterestDouble=0.00, totalPaymentDouble=0.00;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +133,6 @@ class _AddLoanFormState extends State<AddLoanForm> {
                       if(val == null || val.toString().isEmpty){
                         return 'Please select Loan Period';
                       }
-                      // getAccountNo = val.toString();
                     },
                     items: periods.map((account) {
                       return DropdownMenuItem(
@@ -205,24 +207,25 @@ class _AddLoanFormState extends State<AddLoanForm> {
                               setState(() {
                                 _isProcessing = true;
                               });
-                              // await LoanDatabase.addLoan(loanAmount: getAmount, loanPeriod: getPeriod);
                               setState(() {
                                 _isProcessing = false;
                               });
-                              //   Navigator.of(context).pop();
 
                               print(getAmount);
                               print(getPeriod);
                               var amount = int.parse(getAmount);
                               var period = int.parse(getPeriod);
                               setState(() {
-                                emi = (amount*0.02)/12 + (amount/period);
+                                emi = (amount*0.12)/12 + (amount/period);
+                                monthlyemi = double.parse((emi).toStringAsFixed((2)));
                               });
                               setState(() {
-                                totalInterest = (amount* 0.02)*(period/12);
+                                totalInterest = (amount* 0.12)*(period/12);
+                                totalInterestDouble = double.parse((totalInterest).toStringAsFixed((2)));
                               });
                               setState(() {
-                                totalPayment = amount + ((amount* 0.02)*(period/12));
+                                totalPayment = amount + ((amount* 0.12)*(period/12));
+                                totalPaymentDouble = double.parse((totalPayment).toStringAsFixed((2)));
                               });
                             }
                           },
@@ -259,7 +262,6 @@ class _AddLoanFormState extends State<AddLoanForm> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children:  [
@@ -299,7 +301,7 @@ class _AddLoanFormState extends State<AddLoanForm> {
                               child: Align(
                                 alignment: Alignment.topRight,
                                 child: Text(
-                                  emi.toString(),
+                                  monthlyemi.toString(),
                                   style: const TextStyle(
                                       fontSize: 19,
                                       fontWeight: FontWeight.w600
@@ -329,7 +331,7 @@ class _AddLoanFormState extends State<AddLoanForm> {
                                     child: Align(
                                       alignment: Alignment.topRight,
                                       child: Text(
-                                        totalInterest.toString(),
+                                          totalInterestDouble.toString(),
                                         style: const TextStyle(
                                             fontSize: 19,
                                             fontWeight: FontWeight.w600
@@ -359,7 +361,7 @@ class _AddLoanFormState extends State<AddLoanForm> {
                                     child: Align(
                                       alignment: Alignment.topRight,
                                       child: Text(
-                                        totalPayment.toString(),
+                                        totalPaymentDouble.toString(),
                                         style: const TextStyle(
                                             fontSize: 19,
                                             fontWeight: FontWeight.w600
@@ -438,20 +440,19 @@ class _AddLoanFormState extends State<AddLoanForm> {
                               setState(() {
                                 _isProcessing = true;
                               });
-                              //   await BillPaymentDatabase.payBill(amount: getAmount,description:getBill);
                               setState(() {
                                 _isProcessing = false;
                               });
-                              //Navigator.of(context).pop();
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) =>
                                   LoanConfirmScreen(
                                     amount: getAmount,
                                     period: getPeriod.toString(),
-                                    emi: emi.toString(),
+                                    monthlyemi: monthlyemi.toString(),
                                     totalInterest: totalInterest.toString(),
                                     totalPayment: totalPayment.toString(),
+                                    totalPaymentDouble: totalPaymentDouble.toString(),
                                       ),
                                 ),
                               );
