@@ -6,10 +6,10 @@ A new Flutter project.
 
 As SLIIT third-year Software Engineering undergraduates, we redesigned the BOC Smart Passbook application for the User Experience Engineering module assignment. Further, it has been developed to include the following components.
 
-• User Management
-• Transactions Management – Third Party / Own Account 
-• Bill Payment 
-• Loan Application
+- User Management
+- Transactions Management – Third Party / Own Account 
+- Bill Payment 
+- Loan Application
 
 Prototyping Tool - Figma
 Implementation - Flutter & Firebase Firestore
