@@ -1,4 +1,4 @@
-# boc_smart_passbook
+# BOC Smart Passbook
 
 A new Flutter project.
 
