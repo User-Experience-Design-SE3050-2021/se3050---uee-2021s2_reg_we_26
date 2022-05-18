@@ -4,7 +4,15 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+As SLIIT third-year Software Engineering undergraduates, we redesigned the BOC Smart Passbook application for the User Experience Engineering module assignment. Further, it has been developed to include the following components.
+
+• User Management
+• Transactions Management – Third Party / Own Account 
+• Bill Payment 
+• Loan Application
+
+Prototyping Tool - Figma
+Implementation - Flutter & Firebase Firestore
 
 A few resources to get you started if this is your first Flutter project:
 
